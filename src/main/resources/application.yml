@@ -14,6 +14,7 @@ spring:
   application:
     # 应用名称
     name: Global Region
+
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -21,6 +22,10 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
+  messages:
+    basename: i18n/messages/messages
+    encoding: UTF-8
+    fallbackToSystemLocale: false
 
   datasource:
     #  驱动
