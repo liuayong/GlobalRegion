@@ -67,6 +67,13 @@
             <version>1.9.3</version>
         </dependency>
 
+        <!--https://blog.csdn.net/qq_42217906/article/details/122541220-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <build>
