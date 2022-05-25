@@ -20,6 +20,7 @@ public class ClassgetMethodExample2 {
         Object invoke = mthd.invoke(class1.newInstance(), "33222");
         System.out.println(invoke.getClass().getName() + ", " + invoke);
         
+        System.out.println("=============================================");
         mthd = class1.getMethod("Work");
         System.out.println(mthd);
     }
