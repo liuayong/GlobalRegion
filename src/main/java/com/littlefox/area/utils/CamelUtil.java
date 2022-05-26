@@ -10,7 +10,7 @@ public class CamelUtil {
     
     
     public static void main(String[] args) {
-        test2();
+        test1();
         
         
     }
@@ -26,7 +26,7 @@ public class CamelUtil {
     }
     
     private static void test1() {
-        String[] strs = {"sub_str", "Sub_Str", "SUB_sTR"};
+        String[] strs = {"sub_str", "Sub_Str", "SUB_sTR", "SUB_STR"};
         List<String> camelCaseStrs = new ArrayList<>();
         for (String str : strs) {
             String s = toCamelCase(str, true);
