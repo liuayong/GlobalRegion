@@ -39,9 +39,10 @@ public class ExcelUtil {
      * 读取少于1000行数据
      *
      * @param filePath 文件绝对路径
+     * @param sheet
      * @return
      */
-    public static List<Object> readLessThan1000Row(String filePath) {
+    public static List<Object> readLessThan1000Row(String filePath, Sheet sheet) {
         return readLessThan1000RowBySheet(filePath, null);
     }
 

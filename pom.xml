@@ -67,6 +67,18 @@
             <version>20030211.134440</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+        <!-- <dependency>
+             <groupId>commons-beanutils</groupId>
+             <artifactId>commons-beanutils</artifactId>
+             <version>1.9.3</version>
+         </dependency>-->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
         <!--https://blog.csdn.net/qq_42217906/article/details/122541220-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
