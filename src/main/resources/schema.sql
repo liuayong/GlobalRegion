@@ -18,7 +18,8 @@ CREATE TABLE sys_lang
   vc_code varchar(50) DEFAULT NULL COMMENT '编码 用户真正存储的编码',
   e_type varchar(50) DEFAULT NULL COMMENT '类型',
   e_is_edit varchar(50) DEFAULT NULL COMMENT '是否可编辑',
-  vc_remark varchar(4000) DEFAULT NULL
+  vc_remark varchar(4000) DEFAULT NULL,
+  primary key(l_id)
 );
 
 

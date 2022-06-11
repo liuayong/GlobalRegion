@@ -27,17 +27,23 @@ spring:
     encoding: UTF-8
     fallbackToSystemLocale: false
 
+#  datasource:
+#    #  驱动
+#    driver-class-name: org.h2.Driver
+#    # h2 内存数据库 内存模式连接配置 库名: area
+#    url: jdbc:h2:mem:area
+#    # 初始化数据表 DDL
+#    schema: classpath:/schema.sql
+#    #  初始化数据 DML
+#    data: classpath:/data.sql
+#    username: sa
+#    password: sa
+
   datasource:
-    #  驱动
-    driver-class-name: org.h2.Driver
-    # h2 内存数据库 内存模式连接配置 库名: area
-    url: jdbc:h2:mem:area
-    # 初始化数据表 DDL
-    schema: classpath:/schema.sql
-    #  初始化数据 DML
-    data: classpath:/data.sql
-    username: sa
-    password: sa
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://101.132.79.49:3306/middle_school
+    username: root
+    password: ayongAli.,123
   h2:
     #    开启console 访问 默认false
     console:
@@ -51,6 +57,12 @@ spring:
       path: /h2-console
 
 # [Mybatis]
+#mybatis:
+#  mapper-locations: classpath*:/com/littlefox/**/mysql/*.xml
+#  type-aliases-package: com.littlefox.**.model
+
+
+# [Mybatis]
 mybatis:
-  mapper-locations: classpath*:/com/littlefox/**/mysql/*.xml
-  type-aliases-package: com.littlefox.**.model
+  mapper-locations: classpath*:/mapping/*.xml
+  type-aliases-package: com.mexue.middle.school.entity

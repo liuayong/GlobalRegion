@@ -11,8 +11,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Slf4j
-@SpringBootApplication
-@MapperScan("com.littlefox.**.dao")
+@SpringBootApplication(scanBasePackages = {"com.hspedu", "com.littlefox.area", "com.mexue.middle.school"})
+@MapperScan({"com.littlefox.**.dao",   "com.mexue.middle.school.mapper"}) // , "com.mexue.**.mapper"
 public class Application {
 
     public static void main(String[] args) {
