@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
@@ -23,14 +22,13 @@ public class TeacherServiceTest extends TestCase {
     @Autowired
     private TeacherMapper teacherMapper;
     
-    //@Resource
-    @Autowired
+    @Resource
     private TeacherService teacherService;
     
     @Test
     public void selectByPrimaryKey() {
         Integer id = 153;
-    
+        
         System.out.println("teacherMapper = " + teacherMapper);
         Teacher teacher1 = teacherMapper.selectByPrimaryKey(id);
         System.out.println("teacher1 = " + teacher1);
@@ -42,8 +40,9 @@ public class TeacherServiceTest extends TestCase {
     public void updateByPrimaryKeySelective() {
         Integer id = 153;
         Teacher teacher = new Teacher();
+        teacher.setId(id);
         teacher.setCreateTime(new Date());
-        teacher.setMobile("1111111111");
+        teacher.setMobile("13651291261");
         teacherService.updateByPrimaryKeySelective(teacher);
     }
     

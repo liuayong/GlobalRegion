@@ -66,3 +66,13 @@ spring:
 mybatis:
   mapper-locations: classpath*:/mapping/*.xml
   type-aliases-package: com.mexue.middle.school.entity
+
+logging:
+  level:
+    com:
+      mexue:
+        middle:
+          school: debug
+#  logging.level.root=INFO
+#  logging.level.com.mexue.middle.school=DEBUG
+

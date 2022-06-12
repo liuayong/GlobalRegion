@@ -15,22 +15,23 @@
     id, school_id, name, sex, mobile, head_photo_url, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from teacher
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from teacher
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mexue.middle.school.entity.Teacher" >
-    insert into teacher (id, school_id, name, 
-      sex, mobile, head_photo_url, 
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{headPhotoUrl,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into teacher (id, school_id, name,
+                         sex, mobile, head_photo_url,
+                         create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+            #{sex,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{headPhotoUrl,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mexue.middle.school.entity.Teacher" >
     insert into teacher
@@ -117,12 +118,12 @@
   <update id="updateByPrimaryKey" parameterType="com.mexue.middle.school.entity.Teacher" >
     update teacher
     set school_id = #{schoolId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      head_photo_url = #{headPhotoUrl,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+        name = #{name,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=INTEGER},
+        mobile = #{mobile,jdbcType=VARCHAR},
+        head_photo_url = #{headPhotoUrl,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
