@@ -10,39 +10,25 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class TeacherServiceImpl implements TeacherService {
+public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements TeacherService {
     
-    @Autowired
     private TeacherMapper teacherMapper;
     
-    @Override
-    public int deleteByPrimaryKey(Integer id) {
-        return teacherMapper.deleteByPrimaryKey(id);
-    }
+    //public TeacherServiceImpl(TeacherMapper teacherMapper) {
+    //    System.out.println("有参构造方法");
+    //
+    //    this.teacherMapper = teacherMapper;
+    //}
+    //
+    //public TeacherServiceImpl() {
+    //    System.out.println("无参构造方法");
+    //    System.out.println(teacherMapper);
+    //}
     
-    @Override
-    public int insert(Teacher record) {
-        return teacherMapper.insert(record);
-    }
-    
-    @Override
-    public int insertSelective(Teacher record) {
-        return teacherMapper.insertSelective(record);
-    }
-    
-    @Override
-    public Teacher selectByPrimaryKey(Integer id) {
-        return teacherMapper.selectByPrimaryKey(id);
-    }
-    
-    @Override
-    public int updateByPrimaryKeySelective(Teacher record) {
-        return teacherMapper.updateByPrimaryKeySelective(record);
-    }
-    
-    @Override
-    public int updateByPrimaryKey(Teacher record) {
-        return teacherMapper.updateByPrimaryKey(record);
+    @Autowired
+    public void setTeacherMapper(TeacherMapper teacherMapper) {
+        this.teacherMapper = teacherMapper;
+        this.baseMapper = teacherMapper;    // 基类接受子类的赋值
     }
     
     @Override

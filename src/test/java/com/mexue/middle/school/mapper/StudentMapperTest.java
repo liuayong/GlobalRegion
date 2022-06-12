@@ -27,9 +27,15 @@ public class StudentMapperTest {
     @Test
     public void selectByPrimaryKey() {
         Integer id = 9;
-        
         Student student = studentMapper.selectByPrimaryKey(id);
         System.out.println("student = " + student);
+        
+        
+    }
+    
+    @Test
+    public void selectByRecord() {
+        Integer id = 9;
         
         Student studentSearch = new Student();
         studentSearch.setId(id);
@@ -37,6 +43,7 @@ public class StudentMapperTest {
         
         Student student1 = studentMapper.selectByRecord(studentSearch);
         System.out.println("student1 = " + student1);
+        
     }
     
     
