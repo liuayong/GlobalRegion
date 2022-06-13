@@ -11,9 +11,9 @@ public class JdbcDaoHelper {
     
     private static final String USER = "root";
     
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "ayongAli.,123";
     
-    private static final String URL = "jdbc:mysql://localhost:3306/usermanager";
+    private static final String URL = "jdbc:mysql://101.132.79.49:3306/middle_school";
     
     private static Connection con;
     
