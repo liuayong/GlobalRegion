@@ -14,21 +14,26 @@
 ![image-area](img/global_area.png)
 
 ## 本实例依赖以下插件或库，可根据实际使用进行调整修改
+
 * jQuery
 * BootStrap 3
 * BootStrap Select
+
 > 考虑到同一个页面会有多个地区应用场景，比如故乡和工作地，故Ajax请求发送设置为同步，可根据需要调整
 
 ## 如何运行
+
 * ~~Step 1. 在您的数据库中执行`sql`目录中的脚本，`d_area`为地区层级，`sys_lang`为国际化，更换应用数据库连接信息~~
 * Step 1. 使用`mvn spring-boot:run`,启动后浏览器访问`http://localhost:8080`
 
 ## 如何接入使用
+
 * Step 1. 自定义地区下拉元素页面布局，根据实际页面比例预留长度，声明下拉元素ID（需在Step 3 初始化传入，如使用默认ID:fromArea，即可不传）
 * Step 2. 在您自己的页面引入`area.js`
 * Step 3. 调用`Area.initFromArea();` ,初始化即可接入使用
 
 ## Update...
+
 * 加入h2内存数据库，去除mysql依赖，
 * 添加单元测试
 * 优化部分代码
@@ -42,6 +47,21 @@
 - [ ] 封装成Vue组件
 - [ ] 将地区数据做成地图图表，支持下钻
 
+多库提交： git push origin && git push gitee
 
-多库提交：
-    git push origin && git push gitee
+## 数据库脚本
+
+```sql
+create table person
+(
+    id bigint primary key auto_increment comment '主键',
+    code varchar(50) comment '学号',
+    name varchar(50) comment '姓名',
+    -- 
+    sex tinyint comment '性别',
+    age smallint comment '年龄',
+    political varchar(50) comment '政治面貌',
+    origin varchar(50) comment '籍贯',
+    professional varchar(50) comment '所属院系'
+) engine=innodb charset=utf8mb4 comment '人员表';
+```
