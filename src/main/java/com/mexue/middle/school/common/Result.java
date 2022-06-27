@@ -39,7 +39,7 @@ public class Result<T> implements Serializable {
      * 消息
      */
     //@JsonProperty("msg")
-    private String msg = "";
+    private String msg = "成功";
     
     /**
      * 数据对象
@@ -85,6 +85,12 @@ public class Result<T> implements Serializable {
     }
     
     // /////////////////////////////////////自定义方法////////////////////////////////////////////////////
+    
+    //private Boolean success ;       // boolean: isSuccess/setSuccess Boolean: getSuccess/ setSuccess
+    
+    public boolean getSuccess() {
+        return "0".equals(code);
+    }
     
     /**
      * 返回错误信息，指定code和msg<br>

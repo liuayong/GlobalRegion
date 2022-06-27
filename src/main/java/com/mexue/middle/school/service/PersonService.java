@@ -12,4 +12,6 @@ public interface PersonService extends BaseService<Person> {
     PageResult<PersonVo> query(PersonSearch personSearch);
     
     List<PersonVo> queryList(PersonSearch personSearch);
+    
+    void save(Person person);
 }

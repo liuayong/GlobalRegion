@@ -8,6 +8,7 @@ import com.mexue.middle.school.mapper.PersonMapper;
 import com.mexue.middle.school.search.PersonSearch;
 import com.mexue.middle.school.service.PersonService;
 import com.mexue.middle.school.util.BeanUtil;
+import com.mexue.middle.school.util.Validator;
 import com.mexue.middle.school.vo.PersonVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,14 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
                 .collect(Collectors.toList());
         
         return personVoList;
+    }
+    
+    @Override
+    public void save(Person person) {
+        if (Validator.isEmptyZero(person.getId())) {
+            personMapper.insert(person);
+        } else {
+            personMapper.updateByPrimaryKey(person);
+        }
     }
 }

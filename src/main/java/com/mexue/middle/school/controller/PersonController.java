@@ -5,15 +5,19 @@ import com.mexue.middle.school.common.Result;
 import com.mexue.middle.school.entity.Person;
 import com.mexue.middle.school.search.PersonSearch;
 import com.mexue.middle.school.service.PersonService;
+import com.mexue.middle.school.util.Validator;
 import com.mexue.middle.school.vo.PersonVo;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RequestMapping("/mexue/person")
 @RestController
 public class PersonController {
@@ -27,6 +31,7 @@ public class PersonController {
         Map<String, Object> map = new HashMap<>();
         map.put("totalCount", pageResult.getCount());
         map.put("result", pageResult.getItems());
+        map.put("success", true);
         return map;
     }
     
@@ -49,13 +54,52 @@ public class PersonController {
     }
     
     /**
+     * 新增/修改
+     *
+     * @return
+     */
+    @PostMapping("/save")
+    Result<Integer> save(Person person) {
+        //Asserts.isNotNull(person.getName(),ERROR_CODE.ERR_BANNER_TITLE_IS_NULL);
+        Long id = person.getId();
+        personService.save(person);
+        Result<Integer> ok = Result.OK();
+        ok.setMsg(Validator.isEmptyZero(id) ? "新增成功:id=" + person.getId() : "修改成功:id=" + person.getId());
+        return ok;
+    }
+    
+    /**
+     * 删除内容
+     * https://www.imooc.com/qadetail/268268
+     * https://blog.csdn.net/qq_18671415/article/details/115704932
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = {"delete/{id}", "delete"})
+    @ResponseBody
+    public Map delete(@PathVariable(value = "id", required = false) Integer id, HttpServletRequest request) {
+        System.out.println("id1 = " + id);
+        if (id == null) {
+            id = Integer.parseInt(request.getParameter("id"));
+            System.out.println("id2 = " + id);
+        }
+        personService.deleteByPrimaryKey(id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("success", true);
+        map.put("msg", "Id为" + id + "的记录删除成功");
+        
+        return map;
+    }
+    
+    /**
      * 新增
      *
      * @return
      */
     @PostMapping
-    Result<Integer> add(@RequestBody Person person) {
+    Result<Integer> add(Person person) {
         //Asserts.isNotNull(person.getName(),ERROR_CODE.ERR_BANNER_TITLE_IS_NULL);
+        System.out.println("person = " + person);
         int insertId = personService.insert(person);
         System.out.println("insertId = " + insertId);
         System.out.println("person = " + person);

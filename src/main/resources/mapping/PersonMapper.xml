@@ -57,7 +57,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from person
@@ -100,11 +100,11 @@
       </if>
     </where>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from person
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.mexue.middle.school.entity.Person" >
+  <insert id="insert" parameterType="com.mexue.middle.school.entity.Person"  useGeneratedKeys="true" keyProperty="id">
     insert into person (id, code, name, 
       sex, age, political, 
       origin, professional)
@@ -112,7 +112,7 @@
       #{sex,jdbcType=TINYINT}, #{age,jdbcType=SMALLINT}, #{political,jdbcType=VARCHAR}, 
       #{origin,jdbcType=VARCHAR}, #{professional,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.mexue.middle.school.entity.Person" >
+  <insert id="insertSelective" parameterType="com.mexue.middle.school.entity.Person"  useGeneratedKeys="true" keyProperty="id">
     insert into person
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
