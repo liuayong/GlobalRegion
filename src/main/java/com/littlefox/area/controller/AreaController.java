@@ -64,7 +64,7 @@ public class AreaController {
      * @param level  区域的级别，标注国家、省份、地区、城市等
      * @return List<Area>
      */
-    @RequestMapping(value = "/selectAreaList.json", method = RequestMethod.POST)
+    @RequestMapping(value = "/selectAreaList.json")
     @ResponseBody
     public List<Area> selectAreaList(@ModelAttribute("areaId") String areaId, @ModelAttribute("level") String level) {
         String langType = "zh_CN";
