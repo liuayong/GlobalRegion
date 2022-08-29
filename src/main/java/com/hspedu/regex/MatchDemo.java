@@ -7,8 +7,59 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MatchDemo {
+    public static void mai1n() {
+        String content = "I am noob " +
+                "from runoob.com.";
+        
+        String pattern = ".*(runoob).*";
+        
+        boolean isMatch = Pattern.matches(pattern, content);
+        System.out.println("isMatch = " + isMatch);
+        Pattern r = Pattern.compile(pattern);
+        Matcher matcher = r.matcher(content);
+        System.out.println(matcher.groupCount());
+        
+        System.out.println();
+    }
     
     public static void main(String[] args) {
+        String REGEX = "\\bcat\\b";
+        String INPUT = "cat cat cat cattie cat";
+        
+        Pattern r = Pattern.compile(REGEX);
+        Matcher m = r.matcher(INPUT);
+        int count = 0;
+        while (m.find()) {
+            count++;
+            System.out.printf("匹配第%s次: \n", count);
+            System.out.println("开始: " + m.start());
+            System.out.println("结束: " + m.end());
+            System.out.println();
+        }
+        
+        System.out.printf("\n一共匹配%s次\n", count);
+    }
+    
+    private static void demo3() {
+        // 按指定模式在字符串查找
+        String line = "This order was placed for QT3000! OK?你好\n世界This order was placed for QT3000! OK?";
+        String pattern = "(\\D*)(\\d+)(.*)";
+        
+        // 创建 Pattern 对象
+        Pattern r = Pattern.compile(pattern);
+        // 现在创建 matcher 对象
+        Matcher m = r.matcher(line);
+        System.out.println(m.groupCount());
+        while (m.find()) {
+            System.out.println("Found value: " + m.group(0));
+            System.out.println("Found value: " + m.group(1));
+            System.out.println("Found value: " + m.group(2));
+            System.out.println("Found value: " + m.group(3));
+            System.out.println("==========================================");
+        }
+    }
+    
+    private static void demo2() {
         String fileContent = "BizException e1 = new BizException(e, ErrorCodeConstant.QUERY_FAILURE_CODE, \"出库信息查询\");";
         
         String b = "我是B哈哈 BizException e1 = new BizException(ErrorCodeConstant.ADD_FAILURE_CODE, \"添加学校出错\");";
