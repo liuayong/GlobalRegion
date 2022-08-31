@@ -117,6 +117,8 @@ public class BankService {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+
+                    // bankAPIField.length()
                     //根据字段类型以正确的填充方式格式化字符串
                     switch (bankAPIField.type()) {
                         case "S": {
