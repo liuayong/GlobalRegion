@@ -30,6 +30,13 @@ public class BeanUtil {
         
     }
     
+    public static Map beanToMap(Object obj) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Map keyValues = BeanUtils.describe(obj);
+        //System.out.println("keyValues = " + keyValues);
+        LOGGER.info("bean covert to map:{}", JSONObject.toJSON(keyValues).toString());
+        return keyValues;
+    }
+    
     private static void beanToMap() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         User user = new User();
         user.setPassWord("password");

@@ -2,6 +2,7 @@ package com.mexue.middle.school.service.impl;
 
 import com.littlefox.area.Application;
 import com.mexue.middle.school.common.PageResult;
+import com.mexue.middle.school.entity.Person;
 import com.mexue.middle.school.search.PersonSearch;
 import com.mexue.middle.school.service.PersonService;
 import com.mexue.middle.school.service.StudentService;
@@ -19,8 +20,6 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-
-
 public class PersonServiceImplTest {
 
     @Resource
@@ -40,5 +39,13 @@ public class PersonServiceImplTest {
         PersonSearch personSearch = new PersonSearch();
         List<PersonVo> personVos = personService.queryList(personSearch);
         System.out.println(personVos.size());
+    }
+    
+    
+    
+    @Test
+    public void selectByPrimaryKey() {
+        Person person = personService.selectByPrimaryKey(9);
+        System.out.println(person);
     }
 }

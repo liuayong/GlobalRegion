@@ -2,6 +2,7 @@ package com.hspedu.json.gson;
 
 import com.google.gson.Gson;
 import com.mexue.middle.school.entity.Person;
+import com.mexue.middle.school.vo.PersonVo;
 
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class ObjectToJson {
      * @param list
      * @return
      */
-    public static String listToJson(List<Person> list) {
+    public static String listToJson(List<PersonVo> list) {
 
         Gson gson = new Gson();
         String json = gson.toJson(list);

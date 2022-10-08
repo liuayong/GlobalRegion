@@ -1,7 +1,5 @@
 package com.mexue.middle.school.common;
 
-import org.apache.poi.ss.formula.functions.T;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,5 +101,16 @@ public class PageResult<E> {
             extend = new HashMap<>();
         }
         extend.put(key, data);
+    }
+    
+    @Override
+    public String toString() {
+        return "PageResult{" +
+                "pageNum=" + pageNum +
+                ", pageSize=" + pageSize +
+                ", count=" + count +
+                ", items.size=" + items.size() +
+                ", extend=" + extend +
+                '}';
     }
 }
