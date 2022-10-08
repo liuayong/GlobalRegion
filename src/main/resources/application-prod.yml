@@ -1,0 +1,12 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://101.132.79.49:3306/sell
+        username: root
+        password: ayongAli.,123
+server:
+    port: 9003
+
+girl:
+    cupSize: F
+    age: 18

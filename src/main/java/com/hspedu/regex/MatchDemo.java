@@ -23,21 +23,8 @@ public class MatchDemo {
     }
     
     public static void main(String[] args) {
-        String REGEX = "\\bcat\\b";
-        String INPUT = "cat cat cat cattie cat";
-        
-        Pattern r = Pattern.compile(REGEX);
-        Matcher m = r.matcher(INPUT);
-        int count = 0;
-        while (m.find()) {
-            count++;
-            System.out.printf("匹配第%s次: \n", count);
-            System.out.println("开始: " + m.start());
-            System.out.println("结束: " + m.end());
-            System.out.println();
-        }
-        
-        System.out.printf("\n一共匹配%s次\n", count);
+     
+        demo2();
     }
     
     private static void demo3() {
@@ -89,7 +76,7 @@ public class MatchDemo {
             System.out.println(matcher.group(0));
             System.out.println(replace);
             
-            fileContent = fileContent.replaceFirst("\"\\w*[\\u4e00-\\u9fa5\\/!.。！]+\\w*\"", map.get(count));
+            fileContent = fileContent.replaceFirst("(?<=\")\\w*[\\u4e00-\\u9fa5\\/!.。！]+\\w*(?=\")", map.get(count));
             System.out.println(fileContent + "| ");
             
         }
