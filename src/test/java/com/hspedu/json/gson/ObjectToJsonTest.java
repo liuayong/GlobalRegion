@@ -1,5 +1,6 @@
 package com.hspedu.json.gson;
 
+import com.hspedu.json.PersonServiceData;
 import com.littlefox.area.Application;
 import com.littlefox.area.utils.BeanUtil;
 import com.mexue.middle.school.common.PageResult;
@@ -20,34 +21,14 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class ObjectToJsonTest {
-    @Resource
-    private PersonService personService;
+public class ObjectToJsonTest extends PersonServiceData {
     
-    public List<PersonVo> query() {
-        PersonSearch personSearch = new PersonSearch();
-        PageResult<PersonVo> pageResult = personService.query(personSearch);
-        List<PersonVo> items = pageResult.getItems();
-        return items.subList(0, Math.min(3, items.size()));
-    }
-    
-    
-    public Person selectByPrimaryKey() {
-        Person person = personService.selectByPrimaryKey(9);
-        return person;
-    }
-    
-    
-    public Map personMap() throws Exception {
-        Person person = selectByPrimaryKey();
-        return BeanUtil.beanToMap(person);
-    }
     
     @Test
     public void javabeanToJson() throws Exception {
         Person person = selectByPrimaryKey();
         String s = ObjectToJson.javabeanToJson(person);
-        System.out.println("javabeanToJson: " + s);
+        System.out.println("【gson】javabeanToJson: " + s);
         JsonToObject.jsonToJavaBean(s);
     }
     
@@ -56,7 +37,7 @@ public class ObjectToJsonTest {
     public void listToJson() {
         List<PersonVo> personVoList = query();
         String s = ObjectToJson.listToJson(personVoList);
-        System.out.println("listToJson: " + s);
+        System.out.println("【gson】listToJson: " + s);
         JsonToObject.jsonToList(s);
     }
     
@@ -65,7 +46,7 @@ public class ObjectToJsonTest {
         Map map = personMap();
         
         String s = ObjectToJson.mapToJson(map);
-        System.out.println("mapToJson: " + s);
+        System.out.println("【gson】mapToJson: " + s);
         JsonToObject.jsonToMap(s);
     }
 }

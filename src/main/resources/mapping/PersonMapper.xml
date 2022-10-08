@@ -10,6 +10,7 @@
     <result column="political" property="political" jdbcType="VARCHAR" />
     <result column="origin" property="origin" jdbcType="VARCHAR" />
     <result column="professional" property="professional" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -41,7 +42,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, code, name, sex, age, political, origin, professional
+    id, code, name, sex, age, political, origin, professional, create_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mexue.middle.school.entity.PersonExample" >
     select

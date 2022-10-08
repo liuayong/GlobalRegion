@@ -3,13 +3,14 @@ package com.mexue.middle.school.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hspedu.json.jackson.PersonSerialize;
+import com.mexue.middle.school.util.BeanUtil;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Data
-@JsonSerialize(using = PersonSerialize.class)
-public class Person {
+public class PersonCopy {
     private Long id;
     
     private String code;
@@ -44,4 +45,22 @@ public class Person {
     //}
     
     
+    public static PersonCopy convert(Person person) {
+        return BeanUtil.convert(person, PersonCopy.class);
+    }
+    
+    public String toString2() {
+        return "PersonCopy{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", age=" + age +
+                ", political='" + political + '\'' +
+                ", origin='" + origin + '\'' +
+                ", professional='" + professional + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
