@@ -1,11 +1,13 @@
 package com.hspedu.json.jackson;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.mexue.middle.school.entity.Person;
 import com.mexue.middle.school.entity.PersonCopy;
+import springfox.documentation.spring.web.json.Json;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,7 +25,10 @@ public class PersonSerialize extends JsonSerializer<Person> {
             jsonGenerator.writeString("刘阿勇-" + rand);
         } else {
             //jsonGenerator.writeObject(person);
-            jsonGenerator.writeObject(PersonCopy.convert(person));
+            
+            jsonGenerator.writeString(JSON.toJSONString(person));
+            
+            //jsonGenerator.writeObject(PersonCopy.convert(person));
             
             //Map<String, Object> map = new HashMap<>();
             //map.put("id", person.getId());
