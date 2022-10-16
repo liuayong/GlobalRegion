@@ -63,9 +63,11 @@ spring:
 
 
 # [Mybatis]
-mybatis:
-  mapper-locations: classpath*:/mapping/*.xml
-  type-aliases-package: com.mexue.middle.school.entity
+#mybatis:
+#  mapper-locations: classpath*:/mapping/*.xml
+#  type-aliases-package: com.mexue.middle.school.entity
+
+# mybatis.mapper-locations 配置多个mapper路径
 
 logging:
   level:
@@ -75,4 +77,5 @@ logging:
           school: debug
 #  logging.level.root=INFO
 #  logging.level.com.mexue.middle.school=DEBUG
-
+mybatis:
+  mapper-locations: classpath*:/mapping/*.xml,classpath*:/com/littlefox/**/mysql/*.xml
