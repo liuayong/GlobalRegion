@@ -65,3 +65,23 @@ create table person
     professional varchar(50) comment '所属院系'
 ) engine=innodb charset=utf8mb4 comment '人员表';
 ```
+
+springboot 判断环境
+https://blog.csdn.net/qq_41633199/article/details/107366728
+https://www.zhangshilong.cn/work/270539.html
+https://blog.csdn.net/qq_27818541/article/details/105719962
+
+
+读取maven 环境
+https://blog.csdn.net/ityqing/article/details/97780578
+https://www.cnblogs.com/expiator/p/9724540.html
+https://blog.csdn.net/qq_27818541/article/details/105719962
+
+?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+https://www.cnblogs.com/EasonJim/p/6906713.html
+
+
+
+执行代码
+java -jar target\global-area-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --girl.cupsize=M
+

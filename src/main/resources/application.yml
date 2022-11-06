@@ -15,6 +15,9 @@ spring:
     # 应用名称
     name: Global Region
 
+#  profiles:
+#    active: prod
+
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
