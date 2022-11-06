@@ -1,7 +1,7 @@
 #----------------DEV Environment----------------
 # [Server]
 server:
-  address: 127.0.0.1
+#  address: 127.0.0.1
   port: 8080 # 服务绑定的端口，不写默认是8080
   servlet:
     context-path: / # 服务的路径，不写默认为空

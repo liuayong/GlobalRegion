@@ -76,12 +76,36 @@ https://blog.csdn.net/qq_27818541/article/details/105719962
 https://blog.csdn.net/ityqing/article/details/97780578
 https://www.cnblogs.com/expiator/p/9724540.html
 https://blog.csdn.net/qq_27818541/article/details/105719962
+https://www.likecs.com/show-204465189.html
+https://blog.csdn.net/qq_41633199/article/details/107366728
+
+
 
 ?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
 https://www.cnblogs.com/EasonJim/p/6906713.html
-
+https://www.cnblogs.com/godwithus/p/9788790.html
 
 
 执行代码
 java -jar target\global-area-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --girl.cupsize=M
+java -jar -Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar --server.address=0.0.0.0
+nohup java -jar -Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar & 
+
+```
+不添加  --server.address=0.0.0.0 只能本机访问，因为 server.address=127.0.0.1
+redis有类似的概念
+bind 127.0.0.1
+备注：如果想要设置指定IP连接redis，只需要修改redis.conf文件中bind配置项即可。如果不限IP，将127.0.0.1修改成0.0.0.0即可。
+https://www.cnblogs.com/jiangcong/p/15449452.html
+
+
+```
+
+springboot 启动慢
+https://blog.csdn.net/wyyl1/article/details/84785237
+service network restart # 保存后，重启网络：
+127.0.0.1       localhost       aoedeMacBook-Pro.local
+::1             localhost       aoedeMacBook-Pro.local
+
+
 
