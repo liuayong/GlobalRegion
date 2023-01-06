@@ -2,8 +2,12 @@ package com.littlefox.area.controller;
 
 import com.littlefox.area.config.MsgUtil;
 import com.littlefox.area.model.Area;
+import com.littlefox.area.properties.GirlProperties;
+import com.littlefox.area.properties.ProfileConfig;
 import com.littlefox.area.service.AreaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,9 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 /**
  * 地区Controller
@@ -25,6 +28,7 @@ import java.util.Locale;
  */
 @Controller
 @RequestMapping("/area")
+@Slf4j
 public class AreaController {
     
     @Resource
@@ -33,9 +37,23 @@ public class AreaController {
     @Autowired
     private HttpServletRequest request;
     
+    // https://blog.csdn.net/qq_27818541/article/details/105719962
+    //@Value("${spring.profiles.active}")
+    private String[] env;
+    
+    @Value("${server.port}")
+    private Integer appPort;
+    
+    @Autowired
+    private GirlProperties girlProperties;
+    
+    @Autowired
+    private ProfileConfig profileConfig;
+    
+    
     @RequestMapping("lang")
     @ResponseBody
-    public String language(String l) {
+    public Map<String, Object> language(String l) {
         if (l == null) {
             l = "zh_CN";
         }
@@ -54,7 +72,37 @@ public class AreaController {
         }
         
         String message = MsgUtil.get(msgKey);
-        return message;
+        
+        HttpSession session = request.getSession();
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("msgKey", msgKey);
+        map.put("message", message);
+        map.put("locale", locale);
+        map.put("url", request.getRequestURL());
+        map.put("method", request.getMethod());
+        map.put("ip", request.getRemoteAddr());
+        map.put("ServerName", request.getServerName());
+        map.put("SessionID", session.getId());
+        
+        map.put("LocalPort", request.getLocalPort());
+        map.put("RemotePort", request.getRemotePort());
+        map.put("ServerPort", request.getServerPort());
+        
+        map.put("env", Arrays.toString(env));
+        map.put("currEnv", profileConfig.getActiveProfile());
+        map.put("girlProperties", girlProperties);
+        map.put("appPort", appPort);
+        
+        //url
+        log.info("url={}", request.getRequestURL());
+        //method
+        log.info("method={}", request.getMethod());
+        //ip
+        log.info("ip={}", request.getRemoteAddr());
+        
+        
+        return map;
     }
     
     /**

@@ -89,8 +89,8 @@ https://www.cnblogs.com/godwithus/p/9788790.html
 执行代码
 java -jar target\global-area-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --girl.cupsize=M
 java -jar -Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar --server.address=0.0.0.0
-nohup java -jar -Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar & 
-
+nohup java -jar -Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar &
+nohup java -jar -Dspring.profiles.active=prod /usr/local/softs/wars/global-area-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
 ```
 不添加  --server.address=0.0.0.0 只能本机访问，因为 server.address=127.0.0.1
 redis有类似的概念
@@ -98,7 +98,20 @@ bind 127.0.0.1
 备注：如果想要设置指定IP连接redis，只需要修改redis.conf文件中bind配置项即可。如果不限IP，将127.0.0.1修改成0.0.0.0即可。
 https://www.cnblogs.com/jiangcong/p/15449452.html
 
+解决nohup: 忽略输入并把输出追加到"nohup.out"或者nohup: 忽略输入重定向错误到标准输出端
 
+解决方法：
+
+执行nohup java -jar do_iptable.jar & 运行jar会提示：nohup: 忽略输入并把输出追加到"nohup.out"
+
+执行nohup java -jar do_iptable.jar >/dev/null & 运行jar会提示：nohup: 忽略输入重定向错误到标准输出端
+
+修改运行方式为：
+
+nohup java -jar 你的springboot工程名称.jar --server.port=端口号 do_iptable.jar >/dev/null 2>&1& 即可。
+————————————————
+版权声明：本文为CSDN博主「你挚爱的强哥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_37860634/article/details/87485070
 ```
 
 springboot 启动慢

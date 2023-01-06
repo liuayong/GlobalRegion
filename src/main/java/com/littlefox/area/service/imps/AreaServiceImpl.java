@@ -60,7 +60,6 @@ public class AreaServiceImpl implements AreaService {
         // 开发环境 使用redis
         if("dev".equalsIgnoreCase(profileConfig.getActiveProfile())) {
             areas = redisUtil.get(key, List.class, Area.class);
-            System.out.println("areas = " + areas);
             if (!Validator.empty(areas)) {
                 return areas;
             }

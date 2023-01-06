@@ -82,3 +82,8 @@ logging:
 #  logging.level.com.mexue.middle.school=DEBUG
 mybatis:
   mapper-locations: classpath*:/mapping/*.xml,classpath*:/com/littlefox/**/mysql/*.xml
+
+
+girl:
+  cupSize: A
+  age: 10
