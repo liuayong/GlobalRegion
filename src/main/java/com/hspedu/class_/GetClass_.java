@@ -11,7 +11,7 @@ public class GetClass_ {
         //1. Class.forName
         String classAllPath = "com.hspedu.Car"; //通过读取配置文件获取
         Class<?> cls1 = Class.forName(classAllPath);
-        System.out.println(cls1);
+        System.err.println(cls1);
         
         //2. 类名.class , 应用场景: 用于参数传递
         Class<Car> cls2 = Car.class;
@@ -20,7 +20,7 @@ public class GetClass_ {
         //3. 对象.getClass(), 应用场景，有对象实例
         Car car = new Car();
         Class<? extends Car> cls3 = car.getClass();
-        System.out.println(cls3);
+        System.err.println(cls3);
         System.out.println(cls1 == cls3);
         
         //4. 通过类加载器【4种】来获取到类的Class对象
@@ -32,7 +32,7 @@ public class GetClass_ {
         
         //(2)通过类加载器得到Class对象
         Class cls4 = classLoader.loadClass(classAllPath);
-        System.out.println(cls4);
+        System.err.println(cls4);
         System.out.println(cls1 == cls4);
         
         System.out.println("===================================================");
