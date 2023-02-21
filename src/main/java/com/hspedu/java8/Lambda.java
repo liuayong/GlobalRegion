@@ -1,7 +1,18 @@
 package com.hspedu.java8;
 
+import org.junit.Test;
+
 public class Lambda {
-    public static void main(String args[]) {
+    
+    @Test
+    public void test2() {
+        Runnable runnable = () -> System.out.println("lambda表达式");
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+    
+    @Test
+    public void test1() {
         Lambda tester = new Lambda();
         
         // 类型声明
@@ -33,16 +44,16 @@ public class Lambda {
         
         greetService1.sayMessage("Runoob");
         greetService2.sayMessage("Google");
-    
+        
         // 那么就可以使用Lambda表达式来表示该接口的一个实现(注：JAVA 8 之前一般是用匿名类实现的)：
         GreetingService greetingService3 = new GreetingService() {
             @Override
             public void sayMessage(String message) {
-                System.out.println(message + ": 使用匿名类实现" );
+                System.out.println(message + ": 使用匿名类实现");
             }
         };
         greetingService3.sayMessage("阿勇");
-    
+        
     }
     
     interface MathOperation {
