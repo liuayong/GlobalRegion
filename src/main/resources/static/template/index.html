@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.3/axios.js"></script>
+   <!-- http://www.staticfile.org/
+    https://www.fly63.com/article/detial/9702
+    地址：https://www.bootcdn.cn/
+
+    当然。用别人的 CDN 都是不保险的。所以建议在CDN读取失败的时候从自己server提供：下面是jquery为例，其他js也会定义类名，不过js不同的判断，但原理都是一样的。
+    <script src="//cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    if (!window.jQuery) {
+      var script = document.createElement('script');
+      script.src = "/js/jquery.min.js";
+      document.body.appendChild(script);
+    }
+    </script>
+    或者使用document.write方式：
+
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+       document.write(unescape("%3Cscript src='/js/jquerymin.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+    </script>
+
+    -->
+
+
+
+    <script type="text/javascript">
+        const secretKey = 'ABCDEFGHIJK';   // 密钥
+
+        var afterEncrypt = CryptoJS.DES.encrypt('JCccc-你好，我/是/需/要/加*密*的*字*符*串.', CryptoJS.enc.Utf8.parse(secretKey), {
+            mode: CryptoJS.mode.ECB,
+            padding: CryptoJS.pad.Pkcs7
+        }).toString()
+
+        console.log(afterEncrypt); //7D7RsPHmNSlBAaEVgEyE4aL0j1SJtFi9
+
+        // 解密
+        var afterDecrypt = CryptoJS.DES.decrypt(afterEncrypt, CryptoJS.enc.Utf8.parse(secretKey), {
+            mode: CryptoJS.mode.ECB,
+            padding: CryptoJS.pad.Pkcs7
+        }).toString(CryptoJS.enc.Utf8);
+
+        console.log(afterDecrypt);//passwordtoecrypt
+
+        // dNu-MNIt
+
+
+        /**
+         * 前端 CryptoJS 加密后  怎么破解
+         * http://www.smatrix.org/forum/forum.php?mod=viewthread&tid=3145
+         * https://www.cnblogs.com/xueyicanfei/p/11926173.html
+         * https://blog.csdn.net/shine4869/article/details/123654336
+         * http://chage.tmaacvw.cn/#/
+         * @param e
+         */
+        function o(e) {
+            var t = c.a.enc.Utf8.parse(i), n = c.a.DES.decrypt(e, t, {mode: c.a.mode.ECB, padding: c.a.pad.Pkcs7});
+            return c.a.enc.Utf8.stringify(n).toString()
+        }
+
+
+        function decrypt(data) {
+            var key = "dNu-MNIt"
+            var t = CryptoJS.enc.Utf8.parse(key),
+                n = CryptoJS.DES.decrypt(data, t, {
+                    mode: CryptoJS.mode.ECB,
+                    padding: CryptoJS.pad.Pkcs7
+                });
+            let str = CryptoJS.enc.Utf8.stringify(n).toString();
+            console.log(str)
+            return eval("(" + str + ")")
+        }
+
+        var arr = [
+            "KYW8kbgvtNJXicBJ96NFzuZwn31i9x3dWXR2Y4o5TehDNgRHyitQRxJaSlNmpYEh",
+            "KYW8kbgvtNJ4nhJ8Sg9zZAoEvzkVt86GhaEoM8e2NJefAB8VYI+yXLoTPi6KkSBHNbgGg5dWpOjhxqjiPl/4XIswU4NrAKqxojf2vYjxBMk=",
+            "KYW8kbgvtNJl98NIKkLNefHGx3+UNfwxnDEgX0s61sHuE53xZ3gftOBcXYsrVLz0GNGK4xqSl1fVBEhEtJgfng=="
+
+        ];
+        arr.forEach(e => {
+            console.log(decrypt(e))
+        })
+
+    </script>
+</head>
+
+<body>
+</body>
+</html>

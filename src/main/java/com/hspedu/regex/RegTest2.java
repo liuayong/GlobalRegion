@@ -21,12 +21,13 @@ public class RegTest2 {
      */
     @Test
     public void test1() {
-        String ss = "hiooaaoohellowwrld";
+        String ss = "ooaaoohellowwrld";
         Pattern pt = Pattern.compile("(o+)");
         Matcher mt = pt.matcher(ss);
         System.out.println(mt.lookingAt());
-        System.out.println(mt.matches());
-        //mt.reset();
+        
+        //System.out.println(mt.matches());
+       //mt.reset();
         while (mt.find()) {
             log.info(mt.group(1) + "||" + mt.start() + " mt.end()={}", mt.end());
         }
