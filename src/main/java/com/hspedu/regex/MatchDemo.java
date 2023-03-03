@@ -1,5 +1,7 @@
 package com.hspedu.regex;
 
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -7,7 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MatchDemo {
-    public static void mai1n() {
+    @Test
+    public void mai1n() {
         String content = "I am noob " +
                 "from runoob.com.";
         
@@ -22,12 +25,9 @@ public class MatchDemo {
         System.out.println();
     }
     
-    public static void main(String[] args) {
-     
-        demo2();
-    }
     
-    private static void demo3() {
+    @Test
+    public void demo3() {
         // 按指定模式在字符串查找
         String line = "This order was placed for QT3000! OK?你好\n世界This order was placed for QT3000! OK?";
         String pattern = "(\\D*)(\\d+)(.*)";
@@ -46,7 +46,8 @@ public class MatchDemo {
         }
     }
     
-    private static void demo2() {
+    @Test
+    public void demo2() {
         String fileContent = "BizException e1 = new BizException(e, ErrorCodeConstant.QUERY_FAILURE_CODE, \"出库信息查询\");";
         
         String b = "我是B哈哈 BizException e1 = new BizException(ErrorCodeConstant.ADD_FAILURE_CODE, \"添加学校出错\");";
@@ -103,7 +104,8 @@ public class MatchDemo {
     /**
      * http://www.zzvips.com/article/127309.html
      */
-    private static void demo1() {
+    @Test
+    public void demo1() {
         String text = "13522158842;托尔18212349545斯泰;test2;13000002222;8613111113313222";
         //Pattern pattern = Pattern.compile("(?<!\\d)(?:(?:1[358]\\d{9})|(?:861[358]\\d{9}))(?!\\d)");
         Pattern pattern = Pattern.compile("\\d{11}");

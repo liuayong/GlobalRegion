@@ -22,7 +22,7 @@ spring:
     database: 0
     host: local.redis.my
     port: 6379
-#    password: 33
+    password:
     jedis:
       pool:
         #最大连接数

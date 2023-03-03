@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -35,6 +36,8 @@ public class RedisUtilTest {
     
     @Test
     public void set() {
+        Random random = new Random();
+        redisUtil.set("name:" + Math.random(), random.nextInt(10000));
     }
     
     
