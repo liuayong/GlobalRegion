@@ -29,17 +29,18 @@ public class JsonToObject {
     
     public static void jsonToList(String json) {
         
+
+    }
+    
+    public static void jsonToMap(String json) {
         Gson gson = new Gson();
         List<PersonVo> persons = gson.fromJson(json, new TypeToken<List<PersonVo>>() {
         }.getType());//对于不是类的情况，用这个参数给出
         for (PersonVo person : persons) {
             System.out.println(person);
         }
-    }
-    
-    public static void jsonToMap(String json) {
         // TODO Auto-generated method stub
-        Gson gson = new Gson();
+        Gson gson2 = new Gson();
         Map<String, String> maps = gson.fromJson(json, new TypeToken<Map<String, String>>() {
         }.getType());
         
