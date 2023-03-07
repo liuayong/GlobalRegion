@@ -21,6 +21,10 @@ public class SpringUtilTest2 {
         log.info("bookService={}, classType={}", bookService, bookService.getClass().getName());
         Long saveId = bookService.save();
         System.out.printf("saveId = %s完成\n", saveId);
+
+        BookService bookService2 = SpringUtil.getBean(BookService.class);
+        log.info("bookService2={}, classType={}", bookService2, bookService2.getClass().getName());
+        System.out.println((bookService == bookService2) + ", " + bookService.equals(bookService2));
     }
 
 
