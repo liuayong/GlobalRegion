@@ -121,4 +121,20 @@ service network restart # 保存后，重启网络：
 ::1             localhost       aoedeMacBook-Pro.local
 
 
+jedis
+```bash
+maven使用本地jar包
+maven依赖：
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>2.9.0</version>
+</dependency>
+对应于：
 
+mvn install:install-file -Dfile=jedis-2.9.0.jar -DgroupId=redis.clients -DartifactId=jedis -Dversion=2.9.0 -Dpackaging=jar
+文件名：jedis-2.9.0.jar （注意路径）
+groupId：redis.clients
+artifactid：jedis 
+version：2.9.0
+```

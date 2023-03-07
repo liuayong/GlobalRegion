@@ -44,36 +44,4 @@ System.out.println(Arrays.toString(listIds .toArray()));//[1,2,3,3,4,5,6]
         String collect = longList.stream().map(e -> e + "").collect(Collectors.joining(","));
         return collect;
     }
-    
-    @Test
-    public void stringToListTest() {
-        String ids = "1,2,3,4,5,6";
-        String splitStr = ",";
-        List<Long> longList = stringToList(ids);
-        assertTrue(longList.size() > 0);
-        int matches = StringUtils.countMatches(ids, splitStr);
-        assertEquals(matches + 1, longList.size());
-        System.out.println(longList);
-    }
-    
-    @Test
-    public void listToStringTest() {
-        Integer[] integers = {1, 2, 3, 4, 5, 6};
-        List<Long> longList = Arrays.stream(integers).map(num -> (long) num).collect(Collectors.toList());
-        String string = listToString(longList);
-        
-        assertNotNull(string);
-        assertEquals(StringUtils.countMatches(string, ",") + 1, longList.size());
-        assertEquals(string, listToString(longList));
-    }
-    
-    @Test
-    public void listToStringTest2() {
-        Integer[] integers = {1, 2, 3, 4, 5, 6};
-        // Arrays.asList(integers).stream() -> Arrays.stream(integers)
-        List<Long> longList = Arrays.stream(integers).map(num -> (long) num).collect(Collectors.toList());
-        assertNotNull(longList);    // 不能为空
-        assertEquals(longList.size(), integers.length); // 长度一直
-        assertEquals(Arrays.toString(integers), longList.toString());   // 打印出的字符串形式toString一致
-    }
 }

@@ -1,5 +1,6 @@
 package com.hspedu.regex;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Slf4j
 public class MatchDemo {
     @Test
     public void mai1n() {
@@ -121,4 +123,95 @@ public class MatchDemo {
         System.out.println(bf.toString());
         // 13522158842,18212349545,13000002222,8613111113313
     }
+    
+    /**
+     * 正则将小括号里面的内容匹配出来
+     */
+    @Test
+    public void test3() {
+        String content = "src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTa-j2U0lmluP9RWlSytm3ho.woff2) format('woff2')";
+        String regex = "(?<=\\w{1,20}\\()([^)]+)";
+        regex = "(\\w+)\\((?<tag>[^)]+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(content);
+        
+        System.out.println(matcher.groupCount());
+        while (matcher.find()) {
+            log.info("string={}, match1={}, match2={}, count= {}", matcher.group(), matcher.group(1), matcher.group(2),
+                    matcher.groupCount());
+            log.info("捕获组别名获取值 {}, 分组编号获取值 {}", matcher.group("tag"), matcher.group(2));
+            if (matcher.group(1).equals("url")) {
+                log.info("匹配到的url = {}", matcher.group(2));
+            }
+        }
+        
+        regex = "(?<=url\\()(?<url>[^)]+)";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(content);
+        if (matcher.find()) {
+            log.info("命名捕获组 {}\n序号捕获组 {}", matcher.group("url"), matcher.group(1));
+        }
+    }
+    
+    
+    /**
+     *
+     */
+    @Test
+    public void test4() {
+        String text = "hello   String text = \"2021-12-31\"; world 2023-3-5 05:40:51";
+        String regex = "(\\d{4})-(\\d{1,2})-(\\d{1,2})";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            log.info("分组数量: {}", matcher.groupCount());
+            log.info("{}年-{}月-{}日", matcher.group(1), matcher.group(2), matcher.group(3));
+        }
+        
+        // 华丽的分割线
+        System.out.println("+++++++++++++++++++++++++++命名捕获组++++++++++++++++++++++++++++++++");
+        regex = "(?<year>\\d{4})-(?<month>\\d{1,2})-(?<day>\\d{1,2})";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            log.info("分组数量: {}", matcher.groupCount());
+            log.info("{}年-{}月-{}日", matcher.group(1), matcher.group(2), matcher.group(3));
+            log.info("{}年-{}月-{}日", matcher.group("year"), matcher.group("month"), matcher.group("day"));
+        }
+    }
+    
+    /**
+     *
+     */
+    @Test
+    public void test5() {
+        String text = "John writes about this, and John Doe writes about that, and John Wayne writes about everything.";
+        String patternString1 = "((John) (.+?)) ";    // 非贪婪模式
+        //patternString1 = "((John) (\\S+))";    // 贪婪模式
+        Pattern pattern = Pattern.compile(patternString1);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            // group1: "((John) (.+?)) " Json 字符串 加上下一个字符串直到空格结尾
+            // group2: (John)
+            System.out.println("found: <" + matcher.group(1) + "> <" + matcher.group(2) + "> <" + matcher.group(3) + ">");
+        }
+    }
+    
+    
+    /**
+     * 零宽断言
+     */
+    @Test
+    public void test6() {
+        String text = "例如，要匹配 cooking ，singing ，doing中除了ing之外的内容，" +
+                "只取cook, sing, do的内容，这时候的增则表达式可以用";
+        String regex = "\\w+(?=ing)";
+        regex = "[a-z]+?(?=ing)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            log.info("匹配 {}", matcher.group());
+        }
+    }
+    
 }
