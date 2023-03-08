@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
 
 /*
 https://zhuanlan.zhihu.com/p/414598548
@@ -26,87 +26,6 @@ public class ListUtil {
         return null == list || list.size() == 0;
     }
 
-
-    @Test
-    public void intersection() {
-
-        List<String> listA = new ArrayList<String>();
-        listA.add("a");
-        listA.add("b");
-        listA.add("b");
-        listA.add("c");
-        List<String> listB = new ArrayList<String>();
-        listB.add("a");
-        listB.add("e");
-        listB.add("f");
-        System.out.println("集合A:" + listA);
-        System.out.println("集合B:" + listB);
-        System.out.println("------------------------");
-        //并集
-        Collection<String> union = CollectionUtils.union(listA, listB);
-        System.out.println("并集：" + union);
-        //交集
-        Collection<String> intersection = CollectionUtils.intersection(listA, listB);
-        System.out.println("交集：" + intersection);
-        //交集的补集
-        Collection<String> disjunction = CollectionUtils.disjunction(listA, listB);
-        System.out.println("交集的补集   ：" + disjunction);
-        //差集(集合相减)
-        Collection<String> subtract = CollectionUtils.subtract(listA, listB);
-        System.out.println("差集(集合相减)   ：" + subtract);
-    }
-
-    @Test
-    public void intersection2() {
-        List<String> stringList = new ArrayList<>();
-        stringList.add("a");
-        stringList.add("b");
-        stringList.add("c");
-        stringList.add("i");
-        stringList.add("j");
-        stringList.add("a");
-
-        //一、求交集
-        //方法1：直接通过retainAll直接过滤
-        List<String> stringList1 = new ArrayList<>(Arrays.asList("a,b,c,d,e,f,g,h".split(",")));
-        stringList1.retainAll(stringList);
-        System.out.println("交集1: " + stringList1);
-
-        //方法2：通过过滤掉存在于stringList的数据
-        List<String> stringList1_2 = new ArrayList<>(Arrays.asList("a,b,c,d,e,f,g,h".split(",")));
-        List<String> strings = stringList1_2.stream()
-                .filter(item -> stringList.contains(item))
-                .collect(toList());
-        System.out.println("交集2：" + strings);
-
-        //二、并集
-        //有重并集
-        List<String> stringList2 = new ArrayList<>(Arrays.asList("a,b,c,d,e,f,g,h".split(",")));
-        stringList2.addAll(stringList);
-        System.out.println("并集: " + stringList2);
-
-        //无重并集
-        List<String> stringList2_2 = new ArrayList<>(Arrays.asList("a,b,c,d,e,f,g,h".split(",")));
-        List<String> stringList_1 = new ArrayList<>(Arrays.asList("a,b,c,i,j,a".split(",")));
-        stringList2_2.removeAll(stringList_1);
-        stringList_1.addAll(stringList2_2);
-
-        System.out.println("无重并集: " + stringList_1);
-
-        //三、求差集
-        //方法1：直接使用removeAll()方法
-        List<String> stringList3 = new ArrayList<>(Arrays.asList("a,b,c,d,e,f,g,h".split(",")));
-        stringList3.removeAll(stringList);
-        System.out.println("差集1: " + stringList3);
-
-        //方法2：通过过滤掉不存在于stringList的数据，然后和本数组进行交集处理
-        List<String> stringList3_2 = new ArrayList<>(Arrays.asList("a,b,c,d,e,f,g,h".split(",")));
-        stringList3_2.retainAll(stringList3_2.stream()
-                .filter(item -> !stringList.contains(item))
-                .collect(toList()));
-        System.out.println("差集2：" + stringList3_2);
-
-    }
 
     /**
      * 取Map集合的并集
@@ -190,7 +109,114 @@ public class ListUtil {
             }
 
         }
+    }
 
+    /**
+     * 并集, 相同的元素不去重
+     *
+     * @param list1
+     * @param list2
+     * @param <E>
+     * @return
+     */
+    public static <E> List<E> unionAll(Collection<E> list1, Collection<E> list2) {
+        List<E> result = new ArrayList<>(list1.size() + list2.size());
+        result.addAll(list1);
+        result.addAll(list2);
+
+        return result;
 
     }
+
+
+    public static <E> List<E> unionAll2(Collection<E> list1, Collection<E> list2) {
+        List<E> result = new ArrayList<>(list1.size() + list2.size());
+
+        CollectionUtils.addAll(result, list1);
+        CollectionUtils.addAll(result, list2);
+        return result;
+    }
+
+
+    /**
+     * 并集， 相同的元素去重
+     *
+     * @param list1
+     * @param list2
+     * @param <E>
+     * @return
+     */
+    public static <E> List<E> union(Collection<E> list1, Collection<E> list2) {
+        List<E> result = list1.stream().distinct().collect(Collectors.toList());
+        for (E e : list2) {
+            if (!result.contains(e)) {
+                result.add(e);
+            }
+        }
+
+        return result;
+    }
+
+    public static <E> List<E> union2(Collection<E> list1, Collection<E> list2) {
+        Set<E> set = new HashSet<>(list1);
+        for (E e : list2) {
+            set.add(e);
+        }
+
+        return new ArrayList<>(set);
+    }
+
+    /**
+     * 两个数组的交集intersection：  retainAll交集
+     *
+     * @param list1
+     * @param list2
+     * @param <E>
+     * @return
+     */
+    public static <E> List<E> intersection(Collection<E> list1, Collection<?> list2) {
+        List<E> result = new ArrayList<>(Math.min(list1.size(), list2.size()));
+        // for (E e : list1) {
+        //     if (list2.contains(e)) {
+        //         result.add(e);
+        //     }
+        // }
+
+        for (E e : list1) {
+            if (!result.contains(e)) {
+                result.add(e);
+            }
+        }
+
+        return result;
+    }
+
+    public static <E> List<E> intersection2(Collection<E> list1, Collection<?> list2) {
+        return list1.stream().filter(e -> list2.contains(e)).distinct().collect(Collectors.toList());
+    }
+
+    /**
+     * 两个数组的差集(list1 - list2) subtract, list1.removeAll(list2)
+     *
+     * @param list1
+     * @param list2
+     * @param <E>
+     * @return
+     */
+    public static <E> List<E> subtract(Collection<E> list1, Collection<?> list2) {
+        List<E> result = new ArrayList<>();
+        for (E e : list1) {
+            if (!list2.contains(e)) {
+                result.add(e);
+            }
+        }
+
+        return result;
+    }
+
+
+    public static <E> List<E> subtract2(Collection<E> list1, Collection<?> list2) {
+        return list1.stream().filter(e -> !list2.contains(e)).collect(Collectors.toList());
+    }
+
 }
