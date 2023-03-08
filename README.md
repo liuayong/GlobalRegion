@@ -138,3 +138,19 @@ groupId：redis.clients
 artifactid：jedis 
 version：2.9.0
 ```
+
+
+
+spring容器
+```
+// 从spring容器中获取对象
+// https://www.zhangshengrong.com/p/v710KZWrXM/
+https://blog.csdn.net/qq_40965479/article/details/127431468
+
+```
+
+
+
+
+
+
