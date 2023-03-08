@@ -2,13 +2,12 @@ package com.hspedu.java8;
 
 import com.byd.tool.PrintUtil;
 import com.hspedu.pojo.Student;
+import com.hspedu.util.ArrayUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -58,11 +57,7 @@ public class SortStudent {
         List<Student> stuList = Student.getList();
         Student[] tArr = new Student[stuList.size()];
         Student[] list = stuList.toArray(tArr);
-        System.out.println(tArr.equals(list));
-        System.out.println(tArr == list);
-        System.out.println(Arrays.toString(tArr));
-        System.out.println(Arrays.toString(list));
-        
+        Assert.assertEquals(Arrays.toString(tArr), Arrays.toString(list));
         
         Student[] agePrint = this.ageSort(list);
         PrintUtil.println(agePrint);
@@ -79,7 +74,7 @@ public class SortStudent {
      */
     @Test
     public void test2() {
-        Integer[] integers = {3, 32, 321, 2};
+        Integer[] integers = {3, 32, 321};
         log.info("排列成的最小数字: " + PrintMinNumber(integers));
     }
     
@@ -158,34 +153,33 @@ public class SortStudent {
         //stuList.stream().map(Student::getGrade).sorted(Comparator.comparing(Float::intValue)).collect(Collectors.toList());
         List<String> strings = stuList.stream().map(Student::getName).sorted()  // .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
-        System.out.println(Arrays.toString(strings.toArray()));
-        PrintUtil.println(strings);
         PrintUtil.println(stuList);
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++\n");
         
         // 降序排列1
         List<Student> sortList1 = stuList.stream().sorted(Comparator.comparing(Student::getGrade,
                 Comparator.reverseOrder())).collect(Collectors.toList());
-        PrintUtil.println(sortList1);
         Assert.assertEquals(Arrays.toString(gradeFlosts5.toArray()), Arrays.toString(sortList1.stream().map(Student::getGrade).toArray()));
         
         // 降序排列2
         List<Student> sortList2 =
                 stuList.stream().sorted(Comparator.comparing(Student::getGrade).reversed()).collect(Collectors.toList());
-        PrintUtil.println(sortList2);
+        Assert.assertEquals(Arrays.toString(gradeFlosts5.toArray()), Arrays.toString(sortList2.stream().map(Student::getGrade).toArray()));
         
         // 降序排列3
         //stuList.sort((o1, o2) -> o1.getGrade() < o2.getGrade() ? -1 : o1.getGrade() > o2.getGrade() ? 1 : 0);
         //stuList.sort((o1, o2) -> o1.getGrade() < o2.getGrade() ? 1 : (o1.getGrade() > o2.getGrade() ? -1 : 0));
         stuList.sort((o1, o2) -> Float.compare(o2.getGrade(), o1.getGrade()));
-        PrintUtil.println(stuList);
+        Assert.assertEquals(Arrays.toString(gradeFlosts5.toArray()), Arrays.toString(stuList.stream().map(Student::getGrade).toArray()));
         
         
     }
     
     
-    public static String PrintMinNumber(Integer[] s) {
-        Arrays.sort(s, new Comparator<Integer>() {
+    public static String PrintMinNumber(Integer[] ints) {
+        Integer[] copyInts = (Integer[]) ArrayUtil.arrayCopy3(ints);
+        
+        Comparator<Integer> comparator = new Comparator<>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 String str1 = o1 + "" + o2;
@@ -194,10 +188,20 @@ public class SortStudent {
                 //return str1.compareTo(str2);
                 return -str2.compareTo(str1);
             }
-        });
+        };
+        Arrays.sort(ints, comparator);
         
-        PrintUtil.println(s);
-        return Arrays.stream(s).map(e -> e + "").collect(Collectors.joining(""));
+        
+        List<Integer> list = new ArrayList<>(Arrays.asList(copyInts));
+        System.out.print("参数原始值: ");
+        PrintUtil.println(list);
+        Collections.sort(list, comparator);     // list.sort(comparator);
+        System.out.print("集合排序: ");
+        PrintUtil.println(list);
+        
+        System.out.print("数组排序: ");
+        PrintUtil.println(ints);
+        return Arrays.stream(ints).map(e -> e + "").collect(Collectors.joining(""));
     }
     
     @Test
