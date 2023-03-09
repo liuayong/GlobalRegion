@@ -180,6 +180,7 @@ https://www.regexplanet.com/advanced/java/index.html
 
 Excle
 ```
+https://www.cnblogs.com/tobiasy/p/16205868.html
 https://stackoverflow.com/questions/71970035/java-lang-nosuchmethoderror-org-apache-logging-log4j-logger-atdebug-with-poi
 The spring-boot-starter version 2.2.0 dependency was bringing log4j related dependencies with 2.12.1 version, which, did not have atDebug() method. So:
 <dependencyManagement>
@@ -199,4 +200,20 @@ The spring-boot-starter version 2.2.0 dependency was bringing log4j related depe
             </dependency>
         </dependencies>
     </dependencyManagement>
+```
+
+git
+```bash
+git config --list | grep alias
+cat ~/.gitconfig
+
+
+
+可以在~/.zshrc 文件中定义别名，下面是定义的别名。这时使用 gp 将同时提供到 github 与 gitee
+alias gp="git push & git push github"
+
+cat .git/config
+git config  alias.push "push origin & git push gitee" 
+https://segmentfault.com/a/1190000038583946
+
 ```
