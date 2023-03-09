@@ -151,6 +151,19 @@ https://blog.csdn.net/qq_40965479/article/details/127431468
 
 
 
+集合
+```
+集合交集,并集,交集
+https://www.jianshu.com/p/99447a48c28f
+listA.retainAll(listB); // 交集: A 交 B
+listA.removeAll(listB);  // 差集: A - B
+listA.addAll(listB);     // 并集 A 并 B 不去重
 
+listA.removeAll(listB); // 并集去重
+listA.addAll(listB);
+
+https://www.tabnine.com/code/java/methods/java.util.stream.Collectors/toMap
+
+```
 
 

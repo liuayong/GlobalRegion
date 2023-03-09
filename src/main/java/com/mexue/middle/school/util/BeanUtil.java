@@ -114,7 +114,7 @@ public class BeanUtil {
      * @param bean
      * @return
      */
-    private static Set<String> getFileds(Object bean) {
+    public static Set<String> getFileds(Object bean) {
 
         List<String> beanFields = new ArrayList<>();
         Class<?> clazz = bean.getClass();

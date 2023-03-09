@@ -182,6 +182,10 @@ public class ListTest {
         PrintUtil.println(result);
         PrintUtil.println(ListUtil.union(listA, listB));
         PrintUtil.println(CollectionUtils.union(listA, listB));
+
+
+
+
     }
 
 }
