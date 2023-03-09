@@ -215,5 +215,14 @@ alias gp="git push & git push github"
 cat .git/config
 git config  alias.push "push origin & git push gitee" 
 https://segmentfault.com/a/1190000038583946
+https://www.itqaq.com/index/322.html
+
+git reset HEAD -- . 撤销暂存区的文件
+git reset --hard 清空工作区和暂存区的改动
+
+在撤销修改一节中，我们知道，命令git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区。既然是一个unstage操作，就可以配置一个unstage别名：
+$ git config --global alias.unstage 'reset HEAD'
+
 
 ```
+
