@@ -64,7 +64,7 @@ public class FileUtilTest {
         //System.out.println(replace);   System.exit(0);
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(str);
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         while (matcher.find()) {
             log.info("input={},group1={}", matcher.group(), matcher.group(1));
             matcher.appendReplacement(sb, "");

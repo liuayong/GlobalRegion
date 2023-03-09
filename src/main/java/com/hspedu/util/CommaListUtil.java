@@ -30,7 +30,7 @@ public class CommaListUtil {
         if (CollectionUtils.isEmpty(userList)) {
             return "";
         }
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         for (User user : userList) {
             sb.append("'").append(user.getName()).append("'").append(SEPARATOR);
         }

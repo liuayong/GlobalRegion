@@ -47,7 +47,7 @@ public class CamelUtil {
         }
         
         int len = name.length();
-        StringBuilder res = new StringBuilder(len + 2);
+        StringBuffer res = new StringBuffer(len + 2);
         char pre = 0;
         for (int i = 0; i < len; i++) {
             char ch = name.charAt(i);
@@ -76,7 +76,7 @@ public class CamelUtil {
         }
         
         int length = name.length();
-        StringBuilder sb = new StringBuilder(length);
+        StringBuffer sb = new StringBuffer(length);
         boolean underLineNextChar = false;
         
         for (int i = 0; i < length; ++i) {
@@ -110,7 +110,7 @@ public class CamelUtil {
         }
         
         int length = name.length();
-        StringBuilder sb = new StringBuilder(length);
+        StringBuffer sb = new StringBuffer(length);
         boolean underLineNextChar = false;
         
         for (int i = 0; i < length; ++i) {

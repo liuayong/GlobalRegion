@@ -48,7 +48,7 @@ public class Template {
     }
     
     public String render(Map<String, Object> data) {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(template);
         while (matcher.find()) {

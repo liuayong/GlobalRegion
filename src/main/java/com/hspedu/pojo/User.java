@@ -56,7 +56,7 @@ public class User {
     public String toString() {
         Field[] declaredFields = this.getClass().getDeclaredFields();
 
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         sb.append("User{");
         for (Field field : declaredFields) {
             String fieldName = field.getName();

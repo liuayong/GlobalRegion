@@ -119,7 +119,7 @@ public class RegTest4 {
         
         //不区分大小写, 替换查找到的指定字符串， 奇数个字符串转换为大写, 第偶数个转换为小写
         
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         int i = 1;
         for (; m.find(); i++) {
             if ((i & 1) == 1) {   // 奇数

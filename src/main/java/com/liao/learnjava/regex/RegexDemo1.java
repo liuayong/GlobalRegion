@@ -48,7 +48,7 @@ public class RegexDemo1 {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         while (matcher.find()) {
             String key = matcher.group(1);
             Object o = data.get(key);

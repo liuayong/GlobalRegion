@@ -31,7 +31,7 @@ public class ParamUtil {
         int pageNum = listSize % splitSize == 0 ? listSize / splitSize : listSize / splitSize + 1;  // ceil
         log.info("list条数={}, splitSize={}, pageNum页数={}", listSize, splitSize, pageNum);
         List<List<Long>> splitList = ListUtil.splitList(paramsList, splitSize);
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         for (List<Long> oneList : splitList) {
             sb.append(column).append(" IN (").append(StreamUtil.listToString(oneList)).append(") OR ");
         }
@@ -45,7 +45,7 @@ public class ParamUtil {
         int listSize = paramsList.size();
         int pageNum = listSize % splitSize == 0 ? listSize / splitSize : listSize / splitSize + 1;
         log.info("list条数={}, splitSize={}, pageNum页数={}", listSize, splitSize, pageNum);
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         for (int i = 0; i < pageNum; i++) {
             List<Long> subList;
             if (i == pageNum - 1) {    // 最后一页特殊处理

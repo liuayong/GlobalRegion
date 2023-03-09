@@ -170,7 +170,7 @@ public class PrintUtil {
         if (iMax == -1)
             return "[]";
         
-        StringBuilder b = new StringBuilder();
+        StringBuffer b = new StringBuffer();
         b.append('[');
         for (int i = 0; ; i++) {
             b.append(a[i]);
@@ -188,7 +188,7 @@ public class PrintUtil {
         if (iMax == -1)
             return "[]";
         
-        StringBuilder b = new StringBuilder();
+        StringBuffer b = new StringBuffer();
         b.append('[');
         for (int i = 0; ; i++) {
             b.append(a[i]);
@@ -206,7 +206,7 @@ public class PrintUtil {
         if (iMax == -1)
             return "[]";
         
-        StringBuilder b = new StringBuilder();
+        StringBuffer b = new StringBuffer();
         b.append('[');
         for (int i = 0; ; i++) {
             b.append(a[i]);
