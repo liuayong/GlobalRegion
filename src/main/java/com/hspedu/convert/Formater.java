@@ -34,8 +34,15 @@ public class Formater {
     @Test
     public void test2() {
         String str = "123";
-        String s = String.format("%06d", str);  //s="000123" IllegalFormatConversionException
-
+        String s1 = String.format("%6s", str);  //s="000123" IllegalFormatConversionException
+        String s2 = String.format("%-6s", str);  //s="000123" IllegalFormatConversionException
+    
+        System.out.println("s1 = " + s1);
+        System.out.println("s2 = " + s2);
+        
+        //String.format("%06d", str);
+        //java.util.IllegalFormatConversionException: d != java.lang.String
+    
         // %06d的定义：
         // 0代表前面要补的字符
         // 6代表字符串长度

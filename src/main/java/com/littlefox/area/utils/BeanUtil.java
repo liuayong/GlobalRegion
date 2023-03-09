@@ -31,6 +31,16 @@ public class BeanUtil {
     }
     
     public static Map beanToMap(Object obj) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        
+        // 原文链接：https://blog.csdn.net/C_H_K/article/details/79530590
+        //ConvertUtilsBean convertUtils = BeanUtilsBean.getInstance().getConvertUtils();
+        //DateConverter dateConverter = new DateConverter();
+        //dateConverter.setPattern("yyyy-MM-dd HH:mm:ss");
+        //convertUtils.register(dateConverter, String.class);
+        
+        // https://www.cnblogs.com/jokerjason/p/5724493.html
+        
+        // todo 日期格式converter
         Map keyValues = BeanUtils.describe(obj);
         //System.out.println("keyValues = " + keyValues);
         LOGGER.info("bean covert to map:{}", JSONObject.toJSON(keyValues).toString());

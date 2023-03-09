@@ -224,5 +224,25 @@ git reset --hard 清空工作区和暂存区的改动
 $ git config --global alias.unstage 'reset HEAD'
 
 
+git restore .
+git checkout .
+git clean -n
+
 ```
 
+json转换
+```
+https://blog.csdn.net/C_H_K/article/details/79530590
+https://www.devler.cn/blog/295
+https://blog.csdn.net/C_H_K/article/details/79530590
+https://www.cnblogs.com/jokerjason/p/5724493.html
+gson
+https://www.cnblogs.com/nxf-rabbit75/p/15824987.html
+
+https://www.cnblogs.com/niudaben/p/13229970.html
+https://www.cnblogs.com/niudaben/p/13229970.html
+JSON.toJSONStringWithDateFormat(Object,dateformat,SerializerFeature.WriteDateUseDateFormat)
+JSON.toJSONStringWithDateFormat(map, "yyyy-MM-dd HH:mm:ss", SerializerFeature.WriteDateUseDateFormat);
+
+
+```
