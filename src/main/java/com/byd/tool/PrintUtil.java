@@ -1,9 +1,11 @@
 package com.byd.tool;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.*;
 
+@Slf4j
 public class PrintUtil {
     
     private static final int PRINT_SIZE = 5;
@@ -108,6 +110,7 @@ public class PrintUtil {
     
     private static void printSubCollection(Object[] collection, int len) {
         if (collection == null || collection.length == 0) {
+            log.warn("数组{} 没有元素不打印任何内容", collection);
             return;
         }
         Object first = collection[0];

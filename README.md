@@ -167,3 +167,36 @@ https://www.tabnine.com/code/java/methods/java.util.stream.Collectors/toMap
 ```
 
 
+正则表达式
+```
+[A-F]{4}(?!\S)
+https://rubular.com/r/lvpbG4nAYG
+https://regex101.com/r/uU8gF5/2
+https://www.regexplanet.com/advanced/java/index.html
+
+```
+
+
+
+Excle
+```
+https://stackoverflow.com/questions/71970035/java-lang-nosuchmethoderror-org-apache-logging-log4j-logger-atdebug-with-poi
+The spring-boot-starter version 2.2.0 dependency was bringing log4j related dependencies with 2.12.1 version, which, did not have atDebug() method. So:
+<dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-to-slf4j</artifactId>
+                <version>2.17.2</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.17.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+```

@@ -2,6 +2,7 @@ package com.littlefox.area.excle;
 
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
+import com.littlefox.area.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,8 @@ import java.util.Map;
  * @author rockychen
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+//@SpringBootTest
+@SpringBootTest(classes = Application.class)
 public class HandleData {
     
     /**
