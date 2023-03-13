@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mexue.middle.school.mapper.RefIdMapper">
+
+    <!--需要include的代码块-->
+    <sql id="luck">
+		<!-- #{luck}||'${luck}' -->
+        concat (#{luck} , ' ',  '${luck}' ) FROM DUAL
+	</sql>
+
+    <sql id="luck2">
+	    concat (#{luck} , ' ',  ${luck} ) FROM DUAL
+	</sql>
+
+
+    <!--property标签name属性和参数名一样,但值不同-->
+    <select id="test1" resultType="java.lang.String">
+        select
+        <include refid="luck">
+            <property name="luck" value="luckprop-test1"/>
+        </include>
+        
+    </select>
+
+    <!--property标签name属性和参数名一样,但值为#号方式传值-->
+    <select id="test2" resultType="java.lang.String">
+        select
+        <include refid="luck2">
+            <property name="luck" value="#{luck}"/>
+        </include>
+        
+    </select>
+    <!--property标签name属性和参数名一样,但值为$方式传值-->
+    <select id="test3" resultType="java.lang.String">
+        select
+        <include refid="luck">
+            <property name="luck" value="${luck}"/>
+        </include>
+        
+    </select>
+    <!--property标签name属性和参数名不同-->
+    <select id="test4" resultType="java.lang.String">
+        select
+        <include refid="luck">
+            <property name="luck1" value="lucktheuniverse"/>
+        </include>
+        
+    </select>
+
+</mapper>
