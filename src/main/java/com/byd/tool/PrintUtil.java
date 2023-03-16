@@ -3,6 +3,7 @@ package com.byd.tool;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.time.LocalTime;
 import java.util.*;
 
 @Slf4j
@@ -20,6 +21,15 @@ public class PrintUtil {
         println(obj, PRINT_SIZE);
     }
     
+    public static void printWait(Object o) {
+        System.out.println(LocalTime.now() + " - value: " + o + " - thread: " + Thread.currentThread().getName());
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * 打印方法
      *
@@ -27,8 +37,10 @@ public class PrintUtil {
      */
     public static void println(Object obj, int len) {
         if (obj instanceof String) {
+            System.out.print("类型: " + obj.getClass().getSimpleName() + " : ");
             System.out.println(obj);
         } else if (obj instanceof Number) {
+            System.out.print("类型: " + obj.getClass().getSimpleName() + " : ");
             System.out.println(obj);
         } else if (obj instanceof List) {
             List collection = (List) obj;

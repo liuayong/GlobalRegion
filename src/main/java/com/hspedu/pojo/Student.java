@@ -41,6 +41,20 @@ public class Student {
         
         Student[] list = {p1, p2, p3, p4};
         
-        return new ArrayList<>(Arrays.asList(list));
+        List<Student> students = new ArrayList<>(Arrays.asList(list));
+        students.add(new Student("曾国藩", 20, 83.0F));
+        students.add(new Student("王阳明", 20, 99.0F));
+        students.add(new Student("李鸿章", 10, 98.0F));
+        return students;
+    }
+    
+    
+    public Student() {
+    }
+    
+    public Student(String name, int age, float grade) {
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
     }
 }
