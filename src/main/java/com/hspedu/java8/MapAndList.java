@@ -73,4 +73,12 @@ public class MapAndList {
         PrintUtil.println(keys);
     }
     
+    @Test
+    public void toList3() {
+        int a = 3;
+        double b = 3D;
+        char ch = '在';
+    
+        //System.out.println(a instanceof Object);
+    }
 }
