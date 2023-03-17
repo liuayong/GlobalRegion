@@ -186,4 +186,59 @@ public class ReflectionUtils {
 
         return null;
     }
+
+    /**
+     * https://blog.csdn.net/HaHa_Sir/article/details/124559273
+     *
+     * @param clzz
+     * @param methodName 方法名称
+     * @param argsType   参数类型
+     * @return boolean
+     * @Description: 判断是否包含某个方法
+     * @version v1.0
+     * @author wu
+     * @date 2022年5月3日 下午5:50:13
+     */
+    public static boolean hasMethod(Class clzz, String methodName, Class[] argsType) {
+        // 从当前类查找
+        try {
+            Method declaredMethod = clzz.getDeclaredMethod(methodName, argsType);
+            if (declaredMethod != null) {
+                return true;
+            }
+        } catch (NoSuchMethodException e) {
+        }
+
+        // 从父类中查找
+        try {
+            Method method = clzz.getMethod(methodName, argsType);
+            if (null != method) {
+                return true;
+            }
+        } catch (NoSuchMethodException e) {
+
+        }
+        return false;
+    }
+
+    /**
+     * @param clzz
+     * @param methodName
+     * @param argsType
+     * @return boolean
+     * @Description: 判断类中是否包含某个方法
+     * @version v1.0
+     * @author wu
+     * @date 2022年5月2日 下午11:03:56
+     * @see org.springframework.util.ReflectionUtils
+     */
+    public static boolean hasMethod2(Class clzz, String methodName, Class[] argsType) {
+        Method method = org.springframework.util.ReflectionUtils.findMethod(clzz, methodName, argsType);
+        if (null != method) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
