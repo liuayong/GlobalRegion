@@ -14,16 +14,16 @@ public class MathUtilTest {
     
     @Test
     public void divCeil() {
-        assertEquals(MathUtil.divCeil(3, 2), 2);
-        assertEquals(MathUtil.divCeil(3, 3), 1);
-        assertEquals(MathUtil.divCeil(3, 4), 1);
+        assertEquals(MathUtil.divCeil3(3, 2), 2);
+        assertEquals(MathUtil.divCeil3(3, 3), 1);
+        assertEquals(MathUtil.divCeil3(3, 4), 1);
     }
     
     @Test
     public void divCeil2() {
-        assertEquals(MathUtil.divCeil(3, 2), MathUtil.divCeil2(3, 2));
-        assertEquals(MathUtil.divCeil(3, 3), MathUtil.divCeil2(3, 3));
-        assertEquals(MathUtil.divCeil(3, 4), MathUtil.divCeil2(3, 4));
+        assertEquals(MathUtil.divCeil3(3, 2), MathUtil.divCeil2(3, 2));
+        assertEquals(MathUtil.divCeil3(3, 3), MathUtil.divCeil2(3, 3));
+        assertEquals(MathUtil.divCeil3(3, 4), MathUtil.divCeil2(3, 4));
     }
     
     @Test
