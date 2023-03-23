@@ -3,8 +3,8 @@ package com.hspedu.reflection;
 @Deprecated
 public class Person extends A implements IA, IB {
     //属性
-    public String name;
-    protected static int age; // 4 + 8 = 12
+    public String perName;
+    protected static int perAge; // 4 + 8 = 12
     String job;
     private double sal;
 
@@ -12,11 +12,11 @@ public class Person extends A implements IA, IB {
     public Person() {
     }
 
-    public Person(String name) {
+    public Person(String perName) {
     }
 
     //私有的
-    private Person(String name, int age) {
+    private Person(String perName, int perAge) {
 
     }
 

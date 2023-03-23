@@ -1,8 +1,12 @@
 package com.hspedu.util;
 
+import com.byd.tool.PrintUtil;
+import com.hspedu.reflection.Person;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 反射的 Utils 函数集合
@@ -240,5 +244,35 @@ public class ReflectionUtils {
         return false;
     }
 
+    /**
+     * 获取一个对象的 简单类名
+     *
+     * @param o
+     * @return
+     */
+    public static String getClassSimpleName(Object o) {
+        return o != null ? o.getClass().getSimpleName() : null;
+    }
+
+    /**
+     * 获取一个类的属于属性
+     * 获取某个对象的所有属性，包含父类， 但不包含 java.lang.Object
+     *
+     * @param searchType
+     * @return
+     */
+    public static List<String> getAllFields(Class<?> searchType) {
+        List<String> allFileds = new ArrayList<>();
+        while (searchType != Object.class) {
+            Field[] declaredFields = searchType.getDeclaredFields();
+            for (Field declaredField : declaredFields) {
+                String fieldName = declaredField.getName();
+                allFileds.add(fieldName);
+            }
+            searchType = searchType.getSuperclass();
+        }
+        return allFileds;
+    }
+    
 
 }

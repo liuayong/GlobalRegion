@@ -2,18 +2,23 @@ package com.hspedu.reflection;
 
 //import org.junit.jupiter.api.Test;
 
+import com.byd.tool.PrintUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @author 
+ * @author
  * @version 1.0
  * 演示如何通过反射获取类的结构信息
  */
+@Slf4j
 public class ReflectionUtils {
     public static void main(String[] args) {
 
@@ -58,7 +63,6 @@ public class ReflectionUtils {
             }
 
 
-
         }
 
     }
@@ -66,6 +70,17 @@ public class ReflectionUtils {
     //第一组方法API
     @Test
     public void api_01() throws ClassNotFoundException, NoSuchMethodException {
+        Object o = new Object();
+        PrintUtil.println(o);
+        Field[] fields1 = o.getClass().getFields();
+        for (Field field : fields1) {//增强for
+            System.out.println("Object 属性=" + field.getName());
+        }
+        System.out.println("+++++++++++++++++++++获取某个对象的所有属性，包含父类， 但不包含 java.lang.Object +++++++++++++++++++++++++");
+        Class<?> searchType = Person.class;
+        List<String> allFields = com.hspedu.util.ReflectionUtils.getAllFields(searchType);
+        PrintUtil.println(allFields, 10);
+
 
         //得到Class对象
         Class<?> personCls = Class.forName("com.hspedu.reflection.Person");
@@ -73,6 +88,8 @@ public class ReflectionUtils {
         System.out.println(personCls.getName());//com.hspedu.reflection.Person
         //getSimpleName:获取简单类名
         System.out.println(personCls.getSimpleName());//Person
+
+
         //getFields:获取所有public修饰的属性，包含本类以及父类的
         Field[] fields = personCls.getFields();
         for (Field field : fields) {//增强for
@@ -103,8 +120,8 @@ public class ReflectionUtils {
         for (Constructor<?> declaredConstructor : declaredConstructors) {
             System.out.println("本类中所有构造器=" + declaredConstructor.getName());//这里老师只是输出名
         }
-        
-        
+
+
         //getPackage:以Package形式返回 包信息
         System.out.println(personCls.getPackage());//com.hspedu.reflection
         //getSuperClass:以Class形式返回父类信息

@@ -1,8 +1,10 @@
 package com.hspedu.reflection;
 
 public class A {
-    public String hobby;
+    public String hobby22;
 
+
+    private int innerAofAge = 10 ;
     public void hi() {
 
     }
