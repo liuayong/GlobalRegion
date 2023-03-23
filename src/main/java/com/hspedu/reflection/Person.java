@@ -1,11 +1,14 @@
 package com.hspedu.reflection;
 
+import lombok.Data;
+
 @Deprecated
+@Data
 public class Person extends A implements IA, IB {
     //属性
     public String perName;
     protected static int perAge; // 4 + 8 = 12
-    String job;
+    String job = "Person job";
     private double sal;
 
     //构造器

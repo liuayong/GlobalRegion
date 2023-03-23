@@ -13,6 +13,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hspedu.util.ReflectionUtils.*;
+
 /**
  * @author
  * @version 1.0
@@ -69,7 +71,7 @@ public class ReflectionUtils {
 
     //第一组方法API
     @Test
-    public void api_01() throws ClassNotFoundException, NoSuchMethodException {
+    public void api_01() throws ClassNotFoundException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException {
         Object o = new Object();
         PrintUtil.println(o);
         Field[] fields1 = o.getClass().getFields();
@@ -78,8 +80,37 @@ public class ReflectionUtils {
         }
         System.out.println("+++++++++++++++++++++获取某个对象的所有属性，包含父类， 但不包含 java.lang.Object +++++++++++++++++++++++++");
         Class<?> searchType = Person.class;
-        List<String> allFields = com.hspedu.util.ReflectionUtils.getAllFields(searchType);
-        PrintUtil.println(allFields, 10);
+        List<String> allFieldNames = com.hspedu.util.ReflectionUtils.getAllFieldNames(searchType);
+        PrintUtil.println(allFieldNames, 10);
+
+        Person person = new Person();
+        // Field innerAofAge = searchType.getField("innerAofAge");
+        // PrintUtil.println(innerAofAge);  // java.lang.NoSuchFieldException: innerAofAge
+
+        List<Field> superFields = getSuperFields(Person.class);
+        PrintUtil.println(superFields, 20);
+        List<Field> allFields = com.hspedu.util.ReflectionUtils.getAllFields(searchType);
+        PrintUtil.println(allFields, 20);
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   ");
+        for (Field field : allFields) {
+            log.info("name = {}, modifiers = {}", field.getName(), field.getModifiers());
+            if ("innerAofAge".equals(field.getName())) {
+                field.setAccessible(true);
+                Object o1 = field.get(person);
+                log.info("fieldValue = {}, valueType = {}", o1, com.hspedu.util.ReflectionUtils.getClassSimpleName(o1));
+            }
+
+            if ("job".equals(field.getName())) {
+                field.setAccessible(true);
+                log.info("获取某个属性值 job = {}", person.getJob());
+                log.info("通过反射获取某个属性值 job = {}", field.get(person));
+
+                // 先判断父类的属性值是否存在？
+                log.info("通过反射获取父类的某个属性值 job1 = {}, job2 = {} ",
+                        field.get(person), getSuperFieldValue(person, field.getName()));
+                System.out.println("------------------------------------------------------------------------------");
+            }
+        }
 
 
         //得到Class对象

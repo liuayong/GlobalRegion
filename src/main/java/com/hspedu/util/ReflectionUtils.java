@@ -261,7 +261,28 @@ public class ReflectionUtils {
      * @param searchType
      * @return
      */
-    public static List<String> getAllFields(Class<?> searchType) {
+    public static List<Field> getAllFields(Class<?> searchType) {
+        List<Field> allFileds = new ArrayList<>();
+        while (searchType != Object.class) {
+            Field[] declaredFields = searchType.getDeclaredFields();
+            for (Field declaredField : declaredFields) {
+                allFileds.add(declaredField);
+            }
+            searchType = searchType.getSuperclass();
+        }
+        return allFileds;
+    }
+
+    /**
+     * https://blog.csdn.net/qq_32452623/article/details/126295843 反射黑魔法
+     * https://blog.51cto.com/u_15327002/3756836
+     * 获取一个类的属于属性
+     * 获取某个对象的所有属性，包含父类， 但不包含 java.lang.Object
+     *
+     * @param searchType
+     * @return
+     */
+    public static List<String> getAllFieldNames(Class<?> searchType) {
         List<String> allFileds = new ArrayList<>();
         while (searchType != Object.class) {
             Field[] declaredFields = searchType.getDeclaredFields();
@@ -273,6 +294,68 @@ public class ReflectionUtils {
         }
         return allFileds;
     }
-    
+
+
+    /**
+     * 获取父类的所有属性字段
+     *
+     * @param searchType
+     * @return
+     */
+    public static List<Field> getSuperFields(Class<?> searchType) {
+        List<Field> superFileds = new ArrayList<>();
+        do {
+            searchType = searchType.getSuperclass();
+            Field[] declaredFields = searchType.getDeclaredFields();
+            for (Field declaredField : declaredFields) {
+                superFileds.add(declaredField);
+            }
+            searchType = searchType.getSuperclass();
+        } while (searchType != Object.class);
+
+        return superFileds;
+    }
+
+
+    /**
+     * 判断某个属性在父类中是否存在
+     *
+     * @param searchType
+     * @param filedName
+     * @return
+     */
+    public static boolean superFieldExists(Class<?> searchType, String filedName) {
+        List<Field> superFields = getSuperFields(searchType);
+        for (Field superField : superFields) {
+            if (superField.getName().equals(filedName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 获取父类某个属性的 值
+     *
+     * @param o
+     * @param filedName
+     * @return
+     */
+    public static Object getSuperFieldValue(Object o, String filedName) {
+        Class<?> searchType = o.getClass();
+        List<Field> superFields = getSuperFields(searchType);
+        for (Field superField : superFields) {
+            if (superField.getName().equals(filedName)) {
+                superField.setAccessible(true);
+                try {
+                    return superField.get(o);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                    log.error("e = {}", e);
+                }
+            }
+        }
+        return null;
+    }
 
 }
