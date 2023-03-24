@@ -11,7 +11,7 @@
 
 级联格式依次为：国家（地区）/省份（直辖市）/市（区）/县，效果如图
 
-![image-area](img/global_area.png)
+![image-area](images/global_area.png)
 
 ## 本实例依赖以下插件或库，可根据实际使用进行调整修改
 
@@ -71,7 +71,6 @@ https://blog.csdn.net/qq_41633199/article/details/107366728
 https://www.zhangshilong.cn/work/270539.html
 https://blog.csdn.net/qq_27818541/article/details/105719962
 
-
 读取maven 环境
 https://blog.csdn.net/ityqing/article/details/97780578
 https://www.cnblogs.com/expiator/p/9724540.html
@@ -79,18 +78,15 @@ https://blog.csdn.net/qq_27818541/article/details/105719962
 https://www.likecs.com/show-204465189.html
 https://blog.csdn.net/qq_41633199/article/details/107366728
 
-
-
 ?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
 https://www.cnblogs.com/EasonJim/p/6906713.html
 https://www.cnblogs.com/godwithus/p/9788790.html
 
+执行代码 java -jar target\global-area-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --girl.cupsize=M java -jar
+-Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar --server.address=0.0.0.0 nohup java -jar
+-Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar & nohup java -jar -Dspring.profiles.active=prod
+/usr/local/softs/wars/global-area-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
 
-执行代码
-java -jar target\global-area-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --girl.cupsize=M
-java -jar -Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar --server.address=0.0.0.0
-nohup java -jar -Dspring.profiles.active=prod global-area-0.0.1-SNAPSHOT.jar &
-nohup java -jar -Dspring.profiles.active=prod /usr/local/softs/wars/global-area-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
 ```
 不添加  --server.address=0.0.0.0 只能本机访问，因为 server.address=127.0.0.1
 redis有类似的概念
@@ -116,12 +112,11 @@ nohup java -jar 你的springboot工程名称.jar --server.port=端口号 do_ipta
 
 springboot 启动慢
 https://blog.csdn.net/wyyl1/article/details/84785237
-service network restart # 保存后，重启网络：
-127.0.0.1       localhost       aoedeMacBook-Pro.local
-::1             localhost       aoedeMacBook-Pro.local
-
+service network restart # 保存后，重启网络： 127.0.0.1 localhost aoedeMacBook-Pro.local
+::1 localhost aoedeMacBook-Pro.local
 
 jedis
+
 ```bash
 maven使用本地jar包
 maven依赖：
@@ -139,9 +134,8 @@ artifactid：jedis
 version：2.9.0
 ```
 
-
-
 spring容器
+
 ```
 // 从spring容器中获取对象
 // https://www.zhangshengrong.com/p/v710KZWrXM/
@@ -149,9 +143,8 @@ https://blog.csdn.net/qq_40965479/article/details/127431468
 
 ```
 
-
-
 集合
+
 ```
 集合交集,并集,交集
 https://www.jianshu.com/p/99447a48c28f
@@ -166,8 +159,8 @@ https://www.tabnine.com/code/java/methods/java.util.stream.Collectors/toMap
 
 ```
 
-
 正则表达式
+
 ```
 [A-F]{4}(?!\S)
 https://rubular.com/r/lvpbG4nAYG
@@ -176,9 +169,8 @@ https://www.regexplanet.com/advanced/java/index.html
 
 ```
 
-
-
 Excle
+
 ```
 https://www.cnblogs.com/tobiasy/p/16205868.html
 https://stackoverflow.com/questions/71970035/java-lang-nosuchmethoderror-org-apache-logging-log4j-logger-atdebug-with-poi
@@ -203,6 +195,7 @@ The spring-boot-starter version 2.2.0 dependency was bringing log4j related depe
 ```
 
 git
+
 ```bash
 git config --list | grep alias
 cat ~/.gitconfig
@@ -231,6 +224,7 @@ git clean -n
 ```
 
 json转换
+
 ```
 https://blog.csdn.net/C_H_K/article/details/79530590
 https://www.devler.cn/blog/295
@@ -246,3 +240,140 @@ JSON.toJSONStringWithDateFormat(map, "yyyy-MM-dd HH:mm:ss", SerializerFeature.Wr
 
 
 ```
+
+```
+maven 
+chenlangping.me/2021/01/16/日常解惑-IDEA读取pom文件卡死问题/
+阿里云仓库地址
+https://maven.aliyun.com/repository/public
+https://maven.aliyun.com/nexus/content/groups/public/
+https://www.jianshu.com/p/f265397618eb
+
+```
+
+maven问题
+![maven卡顿问题](./images/maven.png)
+
+## 问题
+
+```
+SpringBoot启动时报错：The bean 'dataSource', defined in BeanDefinition defined in class path resource
+https://www.cnblogs.com/sunny3158/p/16653596.html
+
+
+
+
+```
+
+## spring cloud
+
+```
+springboot springcloud版本对应
+https://www.cnblogs.com/joshua317/p/15302934.html
+https://www.cnblogs.com/myitnews/p/12388581.html
+https://blog.csdn.net/wjg1314521/article/details/105052679/
+
+
+
+
+```
+
+```
+单元测试
+https://www.jianshu.com/p/2870b31e2996
+https://www.cnblogs.com/Lyn4ever/p/12764875.html
+```
+
+## openfeign
+
+```
+Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。使用Feign，只需要创建一个接口并注解。它具有可插拔的注解特性，可使用Feign 注解和JAX-RS注解。Feign支持可插拔的编码器和解码器。Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。
+https://blog.csdn.net/qq_18671415/article/details/111867607
+参考代码下载：https://github.com/xjs1919/enumdemo下面的openfeign/feign-boot。
+
+怎样学习openfeign  http://185.232.92.110:9880/
+1、首先了解OpenFeign的基本概念，了解它的功能和优势；
+2、学习OpenFeign的安装和配置，了解如何使用它；
+3、学习OpenFeign的API，了解如何使用它来实现RESTful服务；
+4、学习OpenFeign的客户端实现，了解如何使用它来实现客户端调用；
+5、学习OpenFeign的服务端实现，了解如何使用它来实现服务端调用；
+6、学习OpenFeign的高级特性，了解如何使用它来实现更多的功能；
+7、学习OpenFeign的实践案例，了解如何使用它来实现实际的应用场景。
+
+```
+
+### 一、简介
+
+OpenFeign是一个声明式的Web服务客户端，它使得编写Web服务客户端变得更加简单。使用Feign，只需要创建一个接口并注解，即可完成对服务提供方的接口绑定，简化了使用Spring Cloud
+Ribbon时，自动封装服务调用客户端的开发量。
+
+### 二、案例
+
+#### 1. 创建工程
+
+创建一个Spring Boot工程，并引入依赖：
+
+```xml
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+        <version>2.0.0.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Greenwich.SR2</version>
+        <!--<version>Finchley.RELEASE</version>-->
+        <!--<version>${spring-cloud.version}</version>-->
+        <!--<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>-->
+
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
+</dependencies>
+```
+
+#### 2. 创建接口
+
+创建一个接口，并使用Feign注解：
+
+```java
+
+@FeignClient(value = "eureka-client")
+public interface EurekaClientFeign {
+    @GetMapping(value = "/dc")
+    String consumer();
+}
+```
+
+#### 3. 创建控制器
+
+创建一个控制器，并使用Feign接口：
+
+```java
+
+@RestController
+public class DcController {
+    @Autowired
+    EurekaClientFeign eurekaClientFeign;
+    
+    @GetMapping("/consumer")
+    public String dc() {
+        return eurekaClientFeign.consumer();
+    }
+}
+```
+
+#### 4. 启动工程
+
+启动工程，访问`http://localhost:8080/consumer`，可以看到返回结果：`Hello World`。
+
+https://blog.csdn.net/qq_18671415/article/details/111867607
+https://github1s.com/xjs1919/enumdemo/blob/master/openfeign/feign-boot/feign-server/src/main/java/com/github/xjs/openfeign/boot/server/controller/ServerDemoController.java#L8-L16
+
+
+## 远程调用
+![remote callback](./images/README-20230325.png)
+![微服务远程调用](./images/README-20230325.png)

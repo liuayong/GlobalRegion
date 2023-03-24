@@ -19,7 +19,7 @@ public class PrintUtil {
      * @param obj
      */
     public static void println(Object obj) {
-        //println(obj, PRINT_SIZE);  switch
+        //println(obj, PRINT_SIZE);
         
         if (obj instanceof String) {
             System.out.print("类型: " + obj.getClass().getSimpleName() + " : ");
