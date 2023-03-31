@@ -1,6 +1,7 @@
 package com.hspedu.stream;
 
 
+import com.byd.tool.PrintUtil;
 import com.hspedu.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -91,32 +92,42 @@ public class StreamTest {
     public void toMap() {
         List<User> list = getUserList();
         print(list);
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+
+        // 如果出现重复可以 就会抛出异常，千万注意  java.lang.IllegalStateException: Duplicate key BB
+        // Map<String, User> toMap1 = list.stream().collect(Collectors.toMap(User::getType, e -> e));
+        Map<String, User> toMap1 = list.stream().collect(Collectors.toMap(User::getType, e -> e, (k1, k2) -> k1));  // 使用第一次出现的
+        PrintUtil.println(toMap1);
+
+
+        // 保留map可以顺序(顺序和list的顺序保持一致)， 同时保留第一次出现的key
+        // mergeFunction用于设置遇到重复的key保留哪个的问题。(k1, k2) -> k1后面的哪个遇到重复的就保留那个key的值， 重复时保留 第一次出现的key
+        Map<String, User> map1 = list.stream()
+                .collect(Collectors.toMap(User::getType, Function.identity(), (k1, k2) -> k1, LinkedHashMap::new));
+        PrintUtil.println(map1);
+
+
+        // 保留后面出现的key, 顺序不保留, 重复key使用时， 使用第最后出现的元素
+        Map<String, User> map2 = list.stream().collect(Collectors.toMap(User::getType, e -> e, (k1, k2) -> k2));
+        PrintUtil.println(map2);
+
+        // @see toMap1  java.lang.IllegalStateException: Duplicate key BB
+        // Map<String, User> map3 = list.stream().collect(Collectors.toMap(User::getType, Function.identity()));
+        // PrintUtil.println(map3);
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
 
         // 这样分组，key 是无序的
         Map<String, List<User>> groupByMap = list.stream().collect(Collectors.groupingBy(User::getType));
-        System.out.println(groupByMap);
+        PrintUtil.println(groupByMap);
 
         // groupby方法有几个重载方法，上面使用的这个方法有3个参数
         // 第一个参数：分组按照什么进行分类
         // 第二个参数：分组结果最后用什么容器保存并返回，这里指定为LinkedHashMap
         // 第三个参数：分类后，对应的分类的结果如何收集
-        // 保留顺序  这样分组，key 还是原来的顺序
+        // 保留顺序  这样分组，key 还是原来的顺序(最初 List中key的顺序)
         Map<String, List<User>> groupMap2 = list.stream()
                 .collect(Collectors.groupingBy(User::getType, LinkedHashMap::new, Collectors.toList()));
-        System.out.println(groupMap2);
-
-        // mergeFunction用于设置遇到重复的key保留哪个的问题。(k1, k2) -> k1后面的哪个遇到重复的就保留那个key的值， 重复时保留 第一次出现的key
-        Map<String, User> map1 = list.stream()
-                .collect(Collectors.toMap(User::getType, Function.identity(), (k1, k2) -> k1, LinkedHashMap::new));
-
-        System.out.println(map1);
-
-        // 保留后面出现的key
-        Map<String, User> map2 = list.stream().collect(Collectors.toMap(User::getType, e -> e, (k1,k2)->k2));
-        System.out.println(map2);
-
-        // Map<String, User> map3 = list.stream().collect(Collectors.toMap(User::getType, Function.identity()));
-        // System.out.println(map3);
+        PrintUtil.println(groupMap2);
     }
 
 }
