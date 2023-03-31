@@ -19,8 +19,8 @@ import java.util.Map;
  **/
 @Slf4j
 public class FileUtil {
-    
-    
+
+
     /**
      * 递归列出某个文件夹下的文件列表
      *
@@ -40,12 +40,12 @@ public class FileUtil {
         }
         return fileList;
     }
-    
+
     public static void main(String[] args) {
         String path = "D:\\project\\byd\\GlobalRegion\\src\\main\\java\\com\\hspedu\\classload_";
         process(path);
     }
-    
+
     public static void process(String pathStr) {
         File file = new File(pathStr);
         if (file.isDirectory()) {
@@ -63,7 +63,7 @@ public class FileUtil {
             log.error("file = {}", file);
         }
     }
-    
+
     private static Map<String, Integer> parse(File file) {
         int codeLines = 0;
         int commentLines = 0;
@@ -108,7 +108,7 @@ public class FileUtil {
         }
         return map;
     }
-    
+
     /**
      * 返回文件的URL地址。
      *
@@ -123,5 +123,16 @@ public class FileUtil {
         String fileURL = "file:/" + file.getAbsolutePath();
         URL url = new URL(fileURL);
         return url;
+    }
+
+    public static byte[] readInputStream(InputStream inputStream) throws IOException {
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        while ((len = inputStream.read(buffer)) != -1) {
+            bos.write(buffer, 0, len);
+        }
+        bos.close();
+        return bos.toByteArray();
     }
 }

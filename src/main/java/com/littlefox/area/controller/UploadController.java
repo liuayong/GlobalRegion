@@ -1,15 +1,14 @@
 package com.littlefox.area.controller;
 
 import com.byd.tool.PrintUtil;
+import com.hspedu.util.FileUtil;
 import com.littlefox.area.vo.AreaVo;
 import com.mexue.middle.school.common.Result;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -21,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @RestController
@@ -34,13 +32,18 @@ public class UploadController {
 
     @ApiOperation(value = "导入文本数据", notes = "批量导入学校")
     // @RequestMapping(value = "/form", method = RequestMethod.POST, consumes = "multipart/form-data")
-    @PostMapping("/imports")
-    Result imports(@RequestParam(value = "file", required = false) MultipartFile multipartFile, AreaVo areaVo) throws IOException {
-        InputStream inputStream = multipartFile.getInputStream();
+    // @RequestParam(value = "file", required = true)
+    @PostMapping(value = "/imports", consumes = "multipart/form-data")
+        // , consumes =  MediaType.MULTIPART_FORM_DATA_VALUE
+    Result imports(MultipartFile multipartFile, AreaVo areaVo) throws IOException {
+        //
         String contents = "";
+        String str = "";
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             if (multipartFile != null && validateFile(multipartFile, map)) {
+                InputStream inputStream = multipartFile.getInputStream();
+
                 // 设置文件名称
                 map.put("nameParam", multipartFile.getOriginalFilename());
                 // 设置文件名称
@@ -66,14 +69,18 @@ public class UploadController {
                 multipartFile.transferTo(saveFile);
                 // 返回信息
 
+                // contents = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+
+                byte[] getData = FileUtil.readInputStream(inputStream);
+                inputStream.read(getData);
+                 str = new String(getData);
 
             }
-            contents = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
         PrintUtil.println(request.getParameterMap());
-        log.info("areaVo = {}, map = {}, contents = {}", areaVo, map, contents);
+        log.info("areaVo = {}, map = {}, contents = {} str = {}", areaVo, map, contents, str);
         return Result.OK(ObjectUtils.isEmpty(contents) ? areaVo : contents);
     }
 
