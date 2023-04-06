@@ -10,10 +10,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.hspedu.util.ReflectionUtils.*;
+import static com.hspedu.util.ReflectionUtils.getSuperFieldValue;
+import static com.hspedu.util.ReflectionUtils.getSuperFields;
 
 /**
  * @author

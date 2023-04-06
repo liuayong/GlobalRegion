@@ -14,6 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/server/demo")
 public class ServerDemoController {
+
+    /**
+     * http://localhost:8080/server/demo/hello/刘阿勇?msg=你好
+     *
+     * @param username
+     * @param msg
+     * @return
+     */
     @GetMapping("/hello/{username}")
     public String hello(@PathVariable("username") String username, String msg) {
         return "hello:" + username + ",say:" + msg;

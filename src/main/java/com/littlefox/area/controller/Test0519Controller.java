@@ -1,18 +1,18 @@
 package com.littlefox.area.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.littlefox.area.model.Area;
 import com.littlefox.area.service.AreaService;
 import com.littlefox.area.vo.GetCarRequest;
 import com.littlefox.area.vo.GetCarResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,8 +30,12 @@ public class Test0519Controller {
     
     @Autowired
     private HttpServletRequest request;
-    
-    
+
+
+    /**
+     * /test19/snake
+     * @return
+     */
     @RequestMapping(value = "/snake")
     @ResponseBody
     public GetCarResponse snake() {
@@ -44,6 +48,7 @@ public class Test0519Controller {
     }
     
     /**
+     * /test19/queryCard
      * 查询卡券
      *
      * @param request

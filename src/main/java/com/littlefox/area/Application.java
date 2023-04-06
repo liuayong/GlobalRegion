@@ -8,13 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Slf4j
 @SpringBootApplication(scanBasePackages = {"com.hspedu", "com.littlefox.area", "com.mexue.middle.school"})
 @MapperScan({"com.littlefox.**.dao",   "com.mexue.middle.school.mapper"}) // , "com.mexue.**.mapper"
 @EnableFeignClients
+@EnableRetry
 public class Application {
 
     public static void main(String[] args) {

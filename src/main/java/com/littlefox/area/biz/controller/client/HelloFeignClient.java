@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  **/
 @org.springframework.cloud.openfeign.FeignClient(value = "eureka-client")
 public interface HelloFeignClient {
-    @GetMapping("/hello")
+    @GetMapping("/feign/hello")
     String hello();
 }
