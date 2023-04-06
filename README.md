@@ -377,3 +377,9 @@ https://github1s.com/xjs1919/enumdemo/blob/master/openfeign/feign-boot/feign-ser
 ## 远程调用
 ![remote callback](./images/README-20230325.png)
 ![微服务远程调用](./images/README-20230325.png)
+
+
+
+## 重试
+![spring-retry.jpg](./images/spring-retry.jpg)
+![spring-retry2.jpg](./images/spring-retry2.jpg)
