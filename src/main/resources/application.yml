@@ -14,8 +14,10 @@ spring:
   application:
     # 应用名称
     name: Global Region
+  main:
+    allow-bean-definition-overriding: true
 
-#  profiles:
+  #  profiles:
 #    active: prod
   redis:
     #数据库索引

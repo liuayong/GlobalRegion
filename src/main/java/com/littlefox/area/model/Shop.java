@@ -12,4 +12,7 @@ public class Shop implements Serializable {
     private Double price;
     private Integer number;
     private Date createTime;
+
+
+
 }
