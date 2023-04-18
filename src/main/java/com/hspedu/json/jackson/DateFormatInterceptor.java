@@ -1,8 +1,6 @@
 package com.hspedu.json.jackson;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * spring.main.allow-bean-definition-overriding=true
  */
- // @Component
 public class DateFormatInterceptor extends HandlerInterceptorAdapter {  // implements HandlerInterceptor
 // public class DateFormatInterceptor implements HandlerInterceptor {
 

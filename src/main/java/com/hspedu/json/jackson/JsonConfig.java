@@ -29,7 +29,8 @@ public class JsonConfig {
         //Include.NON_NULL 属性为NULL 不序列化
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
-        mapper.setDateFormat(new CustomSimpleDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+        // mapper.setDateFormat(new CustomSimpleDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+        mapper.setDateFormat(new DateFormatPlugin());
 
 //        // 为mapper注册一个带有SerializerModifier的Factory，此modifier主要做的事情为：当序列化类型为array，list、set时，当值为空时，序列化成[]
 //        mapper.setSerializerFactory(mapper.getSerializerFactory().withSerializerModifier(new InwilBeanSerializerModifier()));

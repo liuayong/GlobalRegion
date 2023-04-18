@@ -14,8 +14,8 @@ spring:
   application:
     # 应用名称
     name: Global Region
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
 
   #  profiles:
 #    active: prod
