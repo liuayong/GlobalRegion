@@ -25,7 +25,7 @@ public class DateParseTest {
                 return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             } else {
                 // 支持解析多种日期格式的 Dateformater
-                return new DateFormatPlugin();
+                return new CustomDateFormater();
             }
         }
     };

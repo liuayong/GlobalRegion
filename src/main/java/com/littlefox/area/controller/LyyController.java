@@ -35,9 +35,6 @@ public class LyyController {
 
     @PostMapping("/body1")
     public Result body1(@RequestBody Teacher teacher) {
-        List<User> userList = User.getList();
-        log.info("userList = {}", userList);
-        Teacher oneTeacher = Teacher.getOneTeacher();
         PrintUtil.println(teacher);
         return Result.success(teacher);
     }

@@ -10,17 +10,8 @@ import java.util.List;
 
 /**
  * 支持多种时间格式转换，使用方法  https://www.cnblogs.com/suizhikuo/p/16997212.html
- * <code>
- * spring:
- * jackson:
- * date-format: com.yc.kfpt.webcommons.plugin.DateFormatPlugin
- * </code>
- *
- * @author 敖癸
- * @formatter:on
- * @since 2022/11/4
  */
-public class DateFormatPlugin extends SimpleDateFormat {
+public class CustomDateFormater extends SimpleDateFormat {
 
     private static final List<DateFormat> FORMATS = new ArrayList<>(5);
     private static final String YYYY_MM = "^\\d{4}-\\d{1,2}$";

@@ -18,8 +18,6 @@ import java.util.List;
  *   jackson:
  *     date-format: com.hspedu.json.jackson.DateFormatPlugin
  * </code>
- * @author 敖癸
- * @formatter:on
  * @since 2022/11/4
  */
 public class DateFormatPlugin extends SimpleDateFormat {

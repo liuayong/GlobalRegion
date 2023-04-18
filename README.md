@@ -383,3 +383,26 @@ https://github1s.com/xjs1919/enumdemo/blob/master/openfeign/feign-boot/feign-ser
 ## 重试
 ![spring-retry.jpg](./images/spring-retry.jpg)
 ![spring-retry2.jpg](./images/spring-retry2.jpg)
+
+
+## jackjson Date 
+
+```
+
+http://localhost:8080/test/body1
+http://localhost:8080/lyy/body1
+
+{
+    "mobile": "13718526927",
+    "schoolId": 331122,
+    "name": "曾阿牛",
+    "createTime": "2023-4-18",
+    "updateTime": "2011-11-18 09:29:45",
+    "createTime3": "2021-04-11T01:45:13.407+0000",
+    "updateTime5": 1883234239339,
+    "sex": 1
+}
+
+```
+
+![DateFormatPlugin.jpg](./images/DateFormatPlugin.jpg)
