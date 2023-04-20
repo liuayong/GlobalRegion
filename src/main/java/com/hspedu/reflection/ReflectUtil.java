@@ -21,7 +21,7 @@ import static com.hspedu.util.ReflectionUtils.getSuperFields;
  * 演示如何通过反射获取类的结构信息
  */
 @Slf4j
-public class ReflectionUtils {
+public class ReflectUtil {
     public static void main(String[] args) {
 
     }

@@ -1,11 +1,14 @@
 package com.mexue.middle.school.util;
 
+import com.byd.tool.PrintUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.BeansException;
+import org.springframework.lang.NonNull;
+import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 import java.beans.BeanInfo;
@@ -131,7 +134,7 @@ public class BeanUtil {
 
 
     /**
-     * 拷贝属性,忽略null值
+     * 拷贝属性,忽略null， src值为null的属性忽略
      *
      * @param source
      * @param target
@@ -145,6 +148,39 @@ public class BeanUtil {
         }
         return target;
     }
+
+    /**
+     * 拷贝属性，值赋值target值为null的属性   target值为null的属性将被拷贝
+     *
+     * @param source
+     * @param target
+     * @param <T>
+     * @return
+     */
+    public static <T> T copyNullProperties(Object source, T target) {
+        try {
+            // String[] nullPropertyNames = getNullPropertyNames(target);
+            //获取目标对象的所有字段
+            Field[] targetFields = target.getClass().getDeclaredFields();
+            for (Field targetField : targetFields) {
+                targetField.setAccessible(true);
+                Object targetValue = targetField.get(target);
+                String fieldName = targetField.getName();
+                if (targetValue == null) {
+                    Object fieldValue = com.hspedu.util.ReflectionUtils.getFieldValue(source, fieldName);
+                    targetField.set(target, fieldValue);
+                }
+                targetField.setAccessible(false);
+            }
+        } catch (IllegalAccessException e) {
+            log.error("IllegalAccessException error ", e);
+        } catch (BeansException e) {
+            log.error("copy properties error ", e);
+            handleReflectionException(e);
+        }
+        return target;
+    }
+
 
     /**
      * 拷贝属性,忽略某些字段
@@ -226,7 +262,7 @@ public class BeanUtil {
     }
 
 
-    private static String[] getNullPropertyNames(Object source) {
+    public static String[] getNullPropertyNames(Object source) {
         final BeanWrapper src = new BeanWrapperImpl(source);
         PropertyDescriptor[] pds = src.getPropertyDescriptors();
 
@@ -241,6 +277,25 @@ public class BeanUtil {
         return emptyNames.toArray(result);
     }
 
+
+    public static String[] getNullPropertyNames2(@NonNull Object source) {
+        Assert.notNull(source, "source object must not be null");
+        // if (source == null) {
+        //     return new String[0];
+        // }
+
+        List<String> allFieldNames = com.hspedu.util.ReflectionUtils.getAllFieldNames(source.getClass());
+        PrintUtil.println(allFieldNames, 10);
+        Set<String> emptyNames = new HashSet<String>();
+        for (String fieldName : allFieldNames) {
+            Object fieldValue = com.hspedu.util.ReflectionUtils.getFieldValue(source, fieldName);
+            if (fieldValue == null) {
+                emptyNames.add(fieldName);
+            }
+        }
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
+    }
 
     private static void handleReflectionException(Exception e) {
         ReflectionUtils.handleReflectionException(e);

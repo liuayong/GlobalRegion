@@ -2,24 +2,29 @@ package com.hspedu.reflection;
 
 import lombok.Data;
 
-@Deprecated
 @Data
-public class Person extends A implements IA, IB {
+public class PersonCopy extends A implements IA, IB {
+
     //属性
     public String perName;
     protected static int perAge; // 4 + 8 = 12
-    String job = "Person job";
+    String job;
     private Double sal;
 
+    // private Integer innerAofAge;
+    //
+    // private Integer anInt;
+
+
     //构造器
-    public Person() {
+    public PersonCopy() {
     }
 
-    public Person(String perName) {
+    public PersonCopy(String perName) {
     }
 
     //私有的
-    private Person(String perName, int perAge) {
+    private PersonCopy(String perName, int perAge) {
 
     }
 
@@ -42,7 +47,7 @@ public class Person extends A implements IA, IB {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return this.getClass().getSimpleName() + " {" +
                 "perName='" + perName + '\'' +
                 ", job='" + job + '\'' +
                 ", sal=" + sal +
