@@ -150,7 +150,7 @@ public class BeanUtil {
     }
 
     /**
-     * 拷贝属性，值赋值target值为null的属性   target值为null的属性将被拷贝
+     * 拷贝属性，只赋值target值为null的属性   target值为null的属性将被拷贝
      *
      * @param source
      * @param target
