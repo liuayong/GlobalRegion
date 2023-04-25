@@ -36,14 +36,31 @@ public class FileStreamTest {
     
     @Test
     public void zipTest() throws IOException {
-        String path = "D:\\project\\byd\\GlobalRegion\\src\\main\\java\\com\\mexue\\middle";
-        toZip(new File(path));
+        String path = "D:\\project\\byd\\GlobalRegion\\src\\main\\java\\com\\mexue\\middle\\school";
+        File target1 = new File("D:\\Java\\demo1.zip");
+        // source 是一个目录
+        File source1 = new File(path);
+        System.out.println("是否为文件: " + source1.isFile() + ", 是否为目录: " + source1.isDirectory());
+        toZip(source1, target1);
+        
+        String path2 = "D:\\project\\byd\\GlobalRegion\\src\\main\\java\\com\\mexue\\middle\\school\\common\\PageResult.java";
+        File target2 = new File("D:\\Java\\demo2.zip");
+        // source 是一个文件
+        File source2 = new File(path2);
+        System.out.println("是否为文件: " + source2.isFile());
+        toZip(source2, target2);
     }
     
-    public static void toZip(File source) throws IOException {
-        File target = new File("D:\\Java\\demo2.zip");
+    public static void toZip(File source, File target) throws IOException {
         try (ZipOutputStream out = new ZipOutputStream(new FileOutputStream(target))) {
-            putFileToZip(source, source, out);
+            if (source.isDirectory()) {
+                File[] files = source.listFiles();
+                for (File f : files) {
+                    putFileToZip(f, source, out);
+                }
+            } else {
+                putFileToZip(source, source.getParentFile(), out);
+            }
         }
     }
     
