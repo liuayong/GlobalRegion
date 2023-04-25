@@ -35,7 +35,11 @@ public class FileStreamTest {
     }
     
     @Test
-    public void zipTest() throws IOException {
+    public void zipTest1() throws IOException {
+        zipTest();
+    }
+    
+    public static void zipTest() throws IOException {
         String path = "D:\\project\\byd\\GlobalRegion\\src\\main\\java\\com\\mexue\\middle\\school";
         File target1 = new File("D:\\Java\\demo1.zip");
         // source 是一个目录

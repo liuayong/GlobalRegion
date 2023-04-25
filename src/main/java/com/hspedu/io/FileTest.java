@@ -118,7 +118,7 @@ public class FileTest {
     
     
     @Test
-    public void test6() {
+    public void test6() throws IOException {
         String path = "D:\\project\\byd\\GlobalRegion\\src\\main\\java\\com\\liao\\learnjava";
         
         List<String> files = new ArrayList<>();
@@ -127,6 +127,14 @@ public class FileTest {
             System.out.println(files.get(i));
         }
         
+        
+        String filePath = "src\\main\\java\\com\\liao\\learnjava\\io\\CountInputStream.java";
+        // D:\project\byd\GlobalRegion\src\main\java\com\liao\learnjava\io\CountInputStream.java
+        File file = new File(filePath);
+        System.out.println(file.getCanonicalPath());
+        System.out.println("是否为文件: " + file.isFile() + ", 是否为目录: " + file.isDirectory());
+        File[] files1 = file.listFiles();
+        System.out.println("files1 = " + files1);
     }
     
     private static int depth = 0; //计算目录层级数
