@@ -54,4 +54,12 @@ public class StringUtil {
         }
         return false;
     }
+    
+    public static String repeat(String str, int depth) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < depth; i++) {
+            stringBuffer.append(str);
+        }
+        return stringBuffer.toString();
+    }
 }

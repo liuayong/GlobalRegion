@@ -44,4 +44,6 @@ System.out.println(Arrays.toString(listIds .toArray()));//[1,2,3,3,4,5,6]
         String collect = longList.stream().map(e -> e + "").collect(Collectors.joining(","));
         return collect;
     }
+    
+   
 }

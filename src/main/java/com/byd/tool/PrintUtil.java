@@ -156,6 +156,7 @@ public class PrintUtil {
             System.out.print(i + "): ");
             System.out.println(collection[i]);
         }
+        System.out.print("类型: " + collection.getClass().getSimpleName() + ", 数组数目: " + collection.length + " \n");
     }
     
     

@@ -10,4 +10,13 @@ public class Employee {
     private Integer age;
     
     private Boolean sex;
+    
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                '}';
+    }
 }

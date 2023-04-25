@@ -24,11 +24,6 @@ import java.util.List;
  */
 public class DateFormatPlugin extends SimpleDateFormat {
 
-    public static void main(String[] args) {
-        DateFormatPlugin dateFormatPlugin = new DateFormatPlugin();
-
-        PrintUtil.println(dateFormatPlugin);
-    }
 
     private static final List<DateFormat> FORMATS = new ArrayList<>(5);
     private static final String YYYY_MM = "^\\d{4}-\\d{1,2}$";
