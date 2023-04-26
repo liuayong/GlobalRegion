@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jee="http://www.springframework.org/schema/jee"
+	   xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+
+	<!-- local connection and transaction  -->
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+		<!--		开发环境-->
+		<property name="url"><value>jdbc:oracle:thin:@127.0.0.1:1521/orcl</value></property>
+		<property name="username"><value>dms_oem_uat</value></property>
+		<property name="password"><value>OEM_UAT_UAT</value></property>
+
+		<!--测试环境-->
+		<!--		<property name="url"><value>jdbc:oracle:thin:@10.45.250.237:1521:frdmsuat</value></property>-->
+		<!--		<property name="username"><value>dms_oem_uat</value></property>-->
+		<!--		<property name="password"><value>dms_oem_uat_new123</value></property>-->
+
+		<!--生产环境	-->
+		<!--		<property name="url"><value>jdbc:oracle:thin:@10.45.250.165:1521/frdmsprod</value></property>
+                <property name="username"><value>dms_oem_prod</value></property>
+                <property name="password"><value>GS_CHwrjw3</value></property>-->
+
+		<!-- <property name="password"><value>dms_oem_uat</value></property>
+       <property name="username"><value>dms_oem_test</value></property>
+       <property name="password"><value>dms_oem_test</value></property>-->
+	</bean>
+
+	<!--  	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+            <property name="url"><value>jdbc:oracle:thin:@10.9.28.35:1521/dms</value></property>
+            <property name="username"><value>dms_oem_pt</value></property>
+            <property name="password"><value>qazxcvbnmkoiuytrew</value></property>
+
+            <property name="username"><value>dms_oem_op</value></property>
+            <property name="password"><value>Rst10Twd</value></property>
+
+        </bean>  -->
+
+	<bean id="DbTxnManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="dmsDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+		<!--开发环境-->
+		<property name="url"><value>jdbc:oracle:thin:@127.0.0.1:1521/orcl</value></property>
+		<property name="username"><value>dms_dealer_uat</value></property>
+		<property name="password"><value>DEALER_UAT_UAT</value></property>
+
+		<!--		&lt;!&ndash;测试环境&ndash;&gt;-->
+		<!--		<property name="url"><value>jdbc:oracle:thin:@10.45.250.237:1521:frdmsuat</value></property>-->
+		<!--		<property name="username"><value>dms_dealer_uat</value></property>-->
+		<!--		<property name="password"><value>dms_dealer_uat_new123</value></property>-->
+
+		<!--生产环境	-->
+		<!--	<property name="url"><value>jdbc:oracle:thin:@10.45.250.165:1521/frdmsprod</value></property>
+            <property name="username"><value>dms_dealer_prod</value></property>
+            <property name="password"><value>KXG9s_YZWZ</value></property>-->
+
+	</bean>
+
+	<bean id="dmsDbTxnManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dmsDataSource" />
+	</bean>
+
+	<!-- <bean id="crmDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+		<property name="url"><value>jdbc:oracle:thin:@127.0.0.1:1521:dcms</value></property>
+		<property name="username"><value>dcms_crm_kb</value></property>
+		<property name="password"><value>1</value></property>
+	</bean>
+	<bean id="crmDbTxnManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="crmDataSource" />
+	</bean> -->
+
+	<!-- jta Transaction for websphere v4,v5,v6 -->
+	<!-- 	<jee:jndi-lookup id="dataSource" jndi-name="jndi/oem" /> -->
+	<!-- 	<jee:jndi-lookup id="dmsDataSource" jndi-name="jndi/dealer" /> -->
+	<!-- 	<bean id="wsJtaTm" class="org.springframework.transaction.jta.WebSphereTransactionManagerFactoryBean"/>	 -->
+	<!-- 	<bean id="JtaTxnManager" class="org.springframework.transaction.jta.JtaTransactionManager"> -->
+	<!-- 		<property name="transactionManager" ref="wsJtaTm"/> -->
+	<!-- 	</bean>	 -->
+	<!-- 	<bean id="NoContainedTxnManager" class="com.infoservice.framework.util.WebsphereNoContainedTransactionManager"> -->
+	<!-- 		<property name="jndiUserTransaction"><value>jta/usertransaction</value></property> -->
+	<!-- 	</bean> -->
+
+	<!-- jta Transaction for weblogic v8 以上 -->
+	<!-- app container connection and transaction -->
+	<!-- 	<jee:jndi-lookup id="dataSource" jndi-name="jndi/oem" /> -->
+	<!-- 	<jee:jndi-lookup id="dmsDataSource" jndi-name="jndi/dealer" /> -->
+	<!-- 	<bean id="JtaTxnManager" class="org.springframework.transaction.jta.WebLogicJtaTransactionManager"></bean>	 -->
+	<!-- 	<bean id="NoContainedTxnManager" class="com.infoservice.framework.util.WebsphereNoContainedTransactionManager"> -->
+	<!-- 		<property name="jndiUserTransaction"><value>jta/usertransaction</value></property> -->
+	<!-- 	</bean> -->
+	<!-- other <bean/> definitions here -->
+	<bean id="DBInfo" class="com.infoservice.po3.core.context.DBInfo">
+		<property name="defTxnMng"><value>DbTxnManager</value></property>
+		<!-- FOR WEBLOGIC -->
+		<!--    <property name="defTxnMng"><value>JtaTxnManager</value></property> -->
+		<property name="defDataSource"><value>dataSource</value></property>
+		<property name="noContainedTxnMng"><value>NoContainedTxnManager</value></property>
+		<property name="dbTypeMaps">
+			<map>
+				<entry key="dataSource"><value>oracle</value></entry>
+				<entry key="jndiDataSource"><value>oracle</value></entry>
+				<entry key="dmsDataSource"><value>oracle</value></entry>
+				<entry key="crmDataSource"><value>oracle</value></entry>
+				<entry key="dataNpsTestSource">
+					<value>mssql</value>
+				</entry>
+				<entry key="dataNpsSource">
+					<value>mssql</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="dataNpsSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+		<property name="url"><value>jdbc:mysql://10.54.147.101:3306/nps_dms_db</value></property>
+		<property name="username"><value>appuser1</value></property>
+		<property name="password"><value>AaBb9876</value></property>
+	</bean>
+
+	<bean id="dataNpsTestSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+		<property name="url"><value>jdbc:mysql://10.54.147.101:3306/nps_dms_test_db</value></property>
+		<property name="username"><value>appusertest1</value></property>
+		<property name="password"><value>BbAa6543</value></property>
+	</bean>
+
+</beans>
