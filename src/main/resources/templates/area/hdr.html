@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后盾人</title>
+</head>
+<body>
+<h1>后盾人</h1>
+<main>
+    后盾人不断分享视频教程，学习后盾人教程提升编程能力。
+    <a href="https://baidu.com">百度</a>
+    <a href="https://yahoo.com">雅虎</a>
+</main>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://cdn.staticfile.org/jquery/3.0.0/jquery.js"><\/script>');</script>
+<script type="text/javascript">
+    const body = document.body;
+    let reg = /(?<=<a.*href=(['"])).+?(?=\1)/gi;
+    // console.log(body.innerHTML.match(reg));
+    body.innerHTML = body.innerHTML.replace(reg, "https://houdunren.com");
+
+    function f1() {
+        const main = document.querySelector("main");
+        const reg = /后盾人(?=教程)/gi;
+        main.innerHTML = main.innerHTML.replace(
+            reg, v => `<a href="https://houdunren.com">${v}</a>`
+        );
+    }
+</script>
+</body>
+</html>

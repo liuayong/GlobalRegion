@@ -2,6 +2,7 @@ package com.hspedu.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * @Create: 2023/3/8
  **/
 @Data
-public class Student {
+public class Student implements Serializable {
     private String name;
     private int age;
     private float grade;

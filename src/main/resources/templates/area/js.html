@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js</title>
+</head>
+<body>
+<h1>js</h1>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://cdn.staticfile.org/jquery/3.0.0/jquery.js"><\/script>');</script>
+<script type="text/javascript">
+    // http://localhost:8009/js/
+
+
+    // formartMoney('123456789');
+    // formartMoney('6123456789');
+
+    // formartDate('20230102');
+
+    console.log('20230102'.replace(/(?=(\d{2})$)/g, '-'));
+    console.log('202301-02'.replace(/(?<=(\d{2}-\d+))/, '+'))
+    console.log('202301-02'.replace(/(?<=(\d{2}-\d+))/g, '+'))
+    // 前面是 xxx
+    console.log('202301-02'.replace(/(?<=(\d{2}-\d{2}))/, '+'))
+
+    // 后面是 xxx
+    console.log('202301-02'.replace(/(?=(\d{2}-\d{2}))/, '+'))
+
+
+    // console.log('20230102'.replace(/(?=(\d{2}){2}$)/g, '-'));
+    // console.log('20230102'.replace(/(?=(\d{2}){2}$)/g, '-'));
+
+    function formartDate(date) {
+        // 前面是2个数字
+        console.log(date.replace(/(?=\d{2}$)/, '-'))
+
+        //
+        // console.log(date.replace(/(?=(\d{2})+$)/, '-'))
+        // console.log(date.replace(/(?=(\d{2})+$)/g, '-'))
+        // console.log(date.replaceAll(/(?=(\d{2})+$)/g, '-'))
+        //
+        // console.log(date.replace(/(?<=(\d{2})$)/, '-'));
+        // console.log(date.replace(/(?<=(\d{2})$)/g, '-'));
+        // console.log(date.replaceAll(/(?<=(\d{2})$)/g, '-'));
+
+    }
+
+
+    function formartMoney(money) {
+        let regex = /(?=(\d{3})+?$)/;
+        console.log(money.replace(regex, ','))
+        console.log(money.replace(/(?=(\d{3})+?$)/g, ','))
+        // caught TypeError: String.prototype.replaceAll called with a non-global RegExp argument
+        // console.log(money.replaceAll(/(?=(\d{3})+?$)/, ','))
+
+        console.log(money.replaceAll(/(?=(\d{3})+?$)/g, ','))
+
+        console.log(money.replace(/(?<!^)(?=(\d{3})+?$)/g, ','))
+        console.log(money.replaceAll(/(?<!^)(?=(\d{3})+?$)/g, ','))
+        console.log(money.replace(/(?!^)(?=(\d{3})+?$)/g, ','))
+        console.log(money.replaceAll(/(?!^)(?=(\d{3})+?$)/g, ','))
+        console.log("------------------------------------\n")
+
+    }
+</script>
+</body>
+</html>

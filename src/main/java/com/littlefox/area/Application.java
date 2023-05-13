@@ -32,7 +32,7 @@ public class Application {
     public class MyMvcConfig implements WebMvcConfigurer {
         @Override
         public void addViewControllers(ViewControllerRegistry registry) {
-            registry.addViewController("/").setViewName("area/index");
+            registry.addViewController("/").setViewName("area/index");  // 首页面
         }
     }
 
