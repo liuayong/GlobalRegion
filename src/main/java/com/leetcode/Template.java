@@ -18,39 +18,63 @@ public class Template {
         stopWatch.start(TraceUtil.getMethodName());
         
         
-        String s = "";
-        for (int i = 0; i < 100000; i++) {
-            s += i;
-        }
+        // code heere
+        
         stopWatch.stop();
-        System.out.println(stopWatch.getLastTaskTimeMillis());
-        System.out.println(stopWatch.getTotalTimeMillis());
         System.out.println(stopWatch.prettyPrint());
         
     }
     
     @Test
     public void test2() {
-    
-    
+        StopWatch stopWatch = new StopWatch(TraceUtil.getClassName() + ":" + TraceUtil.getMethodName());
+        stopWatch.start(TraceUtil.getMethodName());
+        
+        
+        // code heere
+        
+        stopWatch.stop();
+        System.out.println(stopWatch.prettyPrint());
+        
     }
     
     @Test
     public void test3() {
-    
-    
+        
+        StopWatch stopWatch = new StopWatch(TraceUtil.getClassName() + ":" + TraceUtil.getMethodName());
+        stopWatch.start(TraceUtil.getMethodName());
+        
+        
+        // code heere
+        
+        stopWatch.stop();
+        System.out.println(stopWatch.prettyPrint());
     }
     
     @Test
     public void test4() {
-    
-    
+        StopWatch stopWatch = new StopWatch(TraceUtil.getClassName() + ":" + TraceUtil.getMethodName());
+        stopWatch.start(TraceUtil.getMethodName());
+        
+        
+        // code heere
+        
+        stopWatch.stop();
+        System.out.println(stopWatch.prettyPrint());
+        
     }
     
     @Test
     public void test5() {
-    
-    
+        
+        StopWatch stopWatch = new StopWatch(TraceUtil.getClassName() + ":" + TraceUtil.getMethodName());
+        stopWatch.start(TraceUtil.getMethodName());
+        
+        
+        // code heere
+        
+        stopWatch.stop();
+        System.out.println(stopWatch.prettyPrint());
     }
     
     

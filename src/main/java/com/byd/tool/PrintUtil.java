@@ -138,7 +138,14 @@ public class PrintUtil {
         // 打印对象类型
         //System.out.println(collection.subList(0, Math.min(len, collection.size())));
         for (int i = 0; i < Math.min(len, collection.size()); i++) {
-            System.out.println(i + "]: " + collection.get(i));
+            Object obj = collection.get(i);
+            
+            if (obj instanceof int[]) {
+                obj = Arrays.toString((int[]) obj);
+            } else if (obj instanceof double[]) {
+                obj = Arrays.toString((double[]) obj);
+            }
+            System.out.println(i + "]: " + obj);
         }
     }
     
@@ -169,7 +176,8 @@ public class PrintUtil {
         //int[] results = Arrays.copyOf(collection, Math.min(collection.length, len));
         System.out.print(toString(collection, len));
         // todo 下面的打印 变为灰色
-        System.out.print(" 类型: " + collection.getClass().getSimpleName() + ", 数组数目: " + collection.length + " \n");
+        System.out.print(" 类型 int[]: " + collection.getClass().getSimpleName() + ", 数组数目: " + collection.length + " " +
+                "\n");
     }
     
     public static void printSubCollection(char[] collection, int len) {
